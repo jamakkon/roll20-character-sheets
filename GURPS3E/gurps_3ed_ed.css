@@ -1,0 +1,281 @@
+
+/* For Firefox */
+input[type=number] {
+    -moz-appearance:textfield;
+}
+
+/* Webkit browsers like Safari and Chrome */
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+input {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+select, option {
+    border-radius: 3px;
+    border: 1px solid #c1c1c1;
+/*    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;*/
+    padding: 3px;
+}
+
+select::-ms-expand {
+  display: none;
+}
+
+.sheet-main {
+    background-color: #FFFFFF;
+    font-family: serif;
+    font-weight: normal;
+    text-align: left;
+    border: 1px solid #c1c1c1;
+    min-width: 850px;
+}
+
+.sheet-main .sheet-full-width {
+    min-width: 800px;   
+}
+
+.sheet-main .sheet-fill-width {
+    width: 100%;   
+}
+
+.sheet-bordered {
+        border: 1px solid #00ffff;
+}
+
+.sheet-main label {
+    text-align: left;
+    font-weight: normal;
+    font-size: 1em;
+}
+
+.sheet-main input {
+    border-radius: 0px;
+    outline: 0px;
+    border-width: 0 0 0 0;
+    border-color: #d1d1d1;
+}
+
+.sheet-main input:focus {
+    background-color: #d9f9f1;
+}
+
+.sheet-main input:disabled {
+    color: #3d6568;
+    width: 30px;
+    border-width: 0;
+    background-color: #ffffff;
+} 
+
+.sheet-main .sheet-table-section-shaded input:disabled {
+    background-color: #f4f4f4;
+} 
+
+.sheet-main .sheet-border-box {
+    border: 1px solid #c1c1c1;
+}
+
+.sheet-main .sheet-tablelike {
+    display: table;
+}
+
+.sheet-main .sheet-table-heading {
+    display: table-header-group;
+    font-weight: bold;
+}
+
+.sheet-main .sheet-table-row {
+    display: table-row;
+    font-weight: normal;
+}
+
+.sheet-main .sheet-col {
+    border: 1px solid #ff0000;
+}
+
+.sheet-main .sheet-table-cell {
+    display: table-cell;
+    padding-left: 3px;
+    padding-right: 3px;
+}
+
+.sheet-main .sheet-heading {
+    text-align: center;
+    text-transform: uppercase;
+    font-size: 1em;
+    min-width: 50px;
+    border: 1px solid #00ff00;
+}
+
+.sheet-main .sheet-heading .sheet-title1{
+    font-family: "Georgia", Times, serif;
+    font-weight: bold;
+    font-size: 4em;
+}
+
+.sheet-main .sheet-attribute-row {
+    font-family: "Georgia", Times, serif;
+    height: 60px;
+    margin: 0px;
+    padding: 0px;
+}
+
+.sheet-main .sheet-attribute-large {
+    text-align: center;
+    display: flex; 
+    flex-direction: row; 
+    justify-content: center; 
+    align-items: center;
+    height: inherit;
+}
+
+.sheet-main .sheet-attribute-row .sheet-attribute-large label {
+    font-weight: bold;
+    font-size: 3em;
+    line-height: 50px;
+    margin: 0px;
+    width: 70px;
+    border: 1px solid #00ff00;
+}
+
+.sheet-main .sheet-attribute-row .sheet-attribute-large input {
+    font-weight: normal;
+    font-size: 3em;
+    text-align: center;
+    width: 60px;
+    height: inherit;
+    border: 2px solid #00ff00;
+}
+
+.sheet-main .sheet-attribute-row .sheet-box-above-label {
+    display: inline-block;
+    text-align: center;
+    height: 50px;
+    border: 1px solid #ff0f00;
+}
+
+.sheet-main .sheet-attribute-row .sheet-box-above-label label {
+    margin: 0px;
+    padding: 0px;
+    border: 1px solid #00ff00;
+    text-align: center;
+}
+
+.sheet-main .sheet-attribute-row .sheet-box-above-label input {
+    font-weight: normal;
+    font-size: 2em;
+    text-align: center;
+    margin: 0px;
+    padding: 0px;
+    border: 1px solid #00ff00;
+}
+
+
+.sheet-main .sheet-cell-small {
+    width: 50px;
+}
+
+.sheet-main .sheet-cell-small input {
+    width: 40px;
+}
+
+.sheet-main .sheet-section-heading {
+    text-align: left;
+    text-transform: uppercase;
+    font-size: 1em;
+}
+
+
+
+.sheet-main input[type="checkbox"].sheet-visibility-toggle {
+    opacity: 0;
+    width: 16px;
+    height: 16px;
+    position: relative;
+    top: 5px;
+    left: 6px;
+    margin: -10px;
+    cursor: pointer;
+    z-index: 1;
+}
+
+/* Fake checkbox */
+input[type="checkbox"].sheet-visibility-toggle + span::before {
+    margin-right: 4px;
+    line-height: 14px;
+    text-align: center;
+    display: inline-block;
+    vertical-align: middle;
+    
+    content: "▼";
+    width: 14px;
+    height: 14px;
+    font-size: 12px;
+}
+
+input[type="checkbox"].sheet-visibility-toggle:checked + span::before {
+    content: "►";
+}
+
+input.sheet-visibility-toggle:checked ~ div.sheet-togglable-visibility {
+    display: none;
+}
+
+input.sheet-tab1:checked ~ div.sheet-tab1,
+input.sheet-tab2:checked ~ div.sheet-tab2,
+input.sheet-tab3:checked ~ div.sheet-tab3,
+input.sheet-tab4:checked ~ div.sheet-tab4 {
+    display: inline-block;
+}
+
+.sheet-main input.sheet-tab {
+    width: 100px;
+    height: 40px;
+    cursor: pointer;    
+    position: relative;
+    opacity: 0;
+    z-index: 9999;
+}
+
+.sheet-main span.sheet-tab {
+    text-align: center;
+    display: inline-block;
+    vertical-align: middle;
+
+    font-size: 13px;    
+    background-color: #f4f4f4;
+    color: #000000;
+    font-weight: bold;
+
+    width: 100px;
+    height: 40px;
+    line-height: 40px;
+    cursor: pointer;    
+    position: relative;
+    vertical-align: middle;
+    margin-left: -101px;
+}
+
+.sheet-main input.sheet-tab1:checked + span.sheet-tab1,
+.sheet-main input.sheet-tab2:checked + span.sheet-tab2,
+.sheet-main input.sheet-tab3:checked + span.sheet-tab3,
+.sheet-main input.sheet-tab4:checked + span.sheet-tab4 {
+    background: #000000;
+    color: #f1f1f1;
+    border-radius: 5px 5px 0px 0px;
+    vertical-align: middle;
+}
+
+.sheet-main .sheet-tab-content { 
+    display: none;
+    margin: 5px; 
+    width: 840px;
+}
