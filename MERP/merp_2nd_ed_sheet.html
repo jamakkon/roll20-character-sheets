@@ -2242,7 +2242,7 @@
                                 </select>
                             </div>
                             <div class="table-cell sheet-secondaryskill-cell">
-                                <button type="roll" name="attr_secondaryskill_roll" title="@{skill_secondaryskill_name} maneuver" value="@{wtype} &{template:secondaryskill} {{type= @{skill_secondaryskill_name}}} {{character=@{character_name}}} {{@{skill_secondaryskill_type}=1}} {{mm_roll=[[1d100!>95cs>95cf<05 + @{skill_secondaryskill_total_bonus} + @{total_mm_penalty}]]}} {{sm_roll=[[1d100!>95cs>95cf<05 + @{skill_secondaryskill_total_bonus} + @{activity_penalty} + ?{Modifier|0}]]}} {{sm_penalty=[[@{activity_penalty}]]}} {{mm_penalty=[[@{total_mm_penalty}]]}} {{skill=[[@{skill_secondaryskill_total_bonus}]]}} {{underflow=[[1d100!>95 * -1]]}}">
+                                <button type="roll" name="attr_secondaryskill_roll" title="@{skill_secondaryskill_name} maneuver" value="@{wtype} &{template:secondaryskill} {{type=@{skill_secondaryskill_name}}} {{character=@{character_name}}} {{@{skill_secondaryskill_type}=1}} {{mm_roll=[[1d100!>95cs>95cf<05 + @{skill_secondaryskill_total_bonus} + @{total_mm_penalty} + ?{Modifier|0}]]}} {{sm_roll=[[1d100!>95cs>95cf<05 + @{skill_secondaryskill_total_bonus} + @{activity_penalty} + ?{Modifier|0}]]}} {{sm_penalty=[[@{activity_penalty}]]}} {{mm_penalty=[[@{total_mm_penalty}]]}} {{skill=[[@{skill_secondaryskill_total_bonus}]]}} {{underflow=[[1d100!>95 * -1]]}}">
                                     <!-- -->
                                 </button>
                             </div>                        
