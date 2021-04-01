@@ -27,7 +27,7 @@
         <span class="horizontal-spacer">&nbsp;</span>                                
         <span class="skill-label" title="Roll 1d100 for orientation">Orientation: </span>
         <button type="roll" name="attr_orientation2_roll" title="Orientation roll" 
-        value="@{wtype} &{template:staticmaneuver} {{type=Orientation}} {{character=@{character_name}}} {{subtags=Static Maneuver}} {{roll=[[1d100!>95cs>95cf<5 + @{skill_perception_total_bonus}[PERCEPTION] + @{activity_penalty}[ACTIVITY] + ?{Modifier|0}[MODIFIER]]]}} {{sm_penalty=[[@{activity_penalty}]]}} {{skill=[[@{skill_perception_total_bonus}]]}}">
+        value="@{wtype} &{template:staticmaneuver} {{type=Orientation}} {{character=@{character_name}}} {{subtags=Static Maneuver}} {{roll=[[1d100!>95cs>95cf<5 + @{skill_perception_total_bonus}[PERCEPTION] + @{activity_penalty}[ACT. PENALTY] + ?{Modifier|0}[MODIFIER]]]}} {{sm_penalty=[[@{activity_penalty}]]}} {{skill=[[@{skill_perception_total_bonus}]]}}">
             <!-- -->
         </button>
         <span class="horizontal-spacer">&nbsp;</span>                                
@@ -539,7 +539,8 @@
                                         <span class="skill-label-bold" title="Total penalty for moving maneuvers">MM Penalty:</span>
                                     </div>
                                     <div class="table-cell">
-                                        <input type="number" class="autocalc-total sheet-autocalc-bonus" name="attr_total_mm_penalty" value="(@{status_stunned} + @{status_down} + @{status_onelimbout}+ @{activity_penalty} + @{total_enc_penalty} + @{leggreaves_penalty})" disabled/> 
+                                        <input type="hidden" name="attr_total_mm_penalty" value="0"/>
+                                        <input type="number" class="autocalc-total sheet-autocalc-bonus" name="attr_total_mm_display_penalty" value="(@{total_mm_penalty})" disabled/> 
                                     </div>
                                     <div class="table-cell">
                                         <input type="hidden" name="attr_encumbrance_penalty" value="0"/>
@@ -555,15 +556,15 @@
                                         <span class="skill-label-bold" title="Total penalty for offensive actions: activity penalty + arm greaves + hit loss">OB Penalty:</span>
                                     </div>
                                     <div class="table-cell">
-                                        <input type="hidden" name="attr_tobpenalty" value="(@{activity_penalty} + @{armgreaves_penalty} + @{total_hit_loss_penalty})" disabled/> 
-                                        <input type="number" class="autocalc-total sheet-autocalc-bonus" name="attr_total_ob_penalty" value="@{tobpenalty}" disabled/> 
+                                        <input type="hidden" name="attr_total_ob_penalty" value="0"/> 
+                                        <input type="number" class="autocalc-total sheet-autocalc-bonus" name="attr_total_ob_display_penalty" value="@{total_ob_penalty}" disabled/> 
                                     </div>
                                     <div class="table-cell">
                                         <span class="skill-label" title="Hit loss penalty applies to OB, when more than half of total hit points are lost.">Hit Loss Penalty:</span>
                                     </div>
                                     <div class="table-cell">
-                                        <input type="hidden" name="attr_total_hit_loss_penalty" value="0" /> 
-                                        <input type="number" class="autocalc-bonus" name="attr_total_hit_loss_display_penalty" value="@{total_hit_loss_penalty}" disabled/>
+                                        <input type="hidden" name="attr_total_hitloss_penalty" value="0" /> 
+                                        <input type="number" class="autocalc-bonus" name="attr_total_hitloss_display_penalty" value="@{total_hitloss_penalty}" disabled/>
                                     </div>
                                 </div>
                             </div>
@@ -1112,7 +1113,7 @@
                             <span class="action-type-label" title="moving maneuver">MM</span>
                         </td>
                         <td>
-                            <button type="roll" name="attr_noarmor_mm" title="No armor moving maneuver" value="@{wtype} &{template:movingmaneuver} {{type=No Armor}} {{character=@{character_name}}} {{subtags=Moving Maneuver}} {{roll=[[1d100!>95cs>95cf<05 + @{skill_noarmor_total_bonus}[SKILL] + @{total_mm_penalty}[MM] + ?{Modifier|0}[MODIFIER]]]}} {{mm_penalty=[[@{total_mm_penalty}]]}} {{skill=[[@{skill_noarmor_total_bonus}]]}} {{underflow=[[1d100!>95 * -1]]}}">
+                            <button type="roll" name="attr_noarmor_mm" title="No armor moving maneuver" value="@{wtype} &{template:movingmaneuver} {{type=No Armor}} {{character=@{character_name}}} {{subtags=Moving Maneuver}} {{roll=[[1d100!>95cs>95cf<05 + @{skill_noarmor_total_bonus}[SKILL] + @{total_mm_penalty}[MM PENALTY] + ?{Modifier|0}[MODIFIER]]]}} {{mm_penalty=[[@{total_mm_penalty}]]}} {{skill=[[@{skill_noarmor_total_bonus}]]}} {{underflow=[[1d100!>95 * -1]]}}">
                             </button>
                         </td>
                     </tr>
@@ -1149,7 +1150,7 @@
                             <span class="action-type-label" title="Moving Maneuver">MM</span>
                         </td>
                         <td>
-                            <button type="roll" name="attr_softleather_mm" title="Soft leather moving maneuver" value="@{wtype} &{template:movingmaneuver} {{type=Soft Leather Armor}} {{character=@{character_name}}} {{subtags=Moving Maneuver}} {{roll=[[1d100 + @{skill_softleather_total_bonus}[SKILL] + @{total_mm_penalty}[MM] + ?{Modifier|0}[MODIFIER]]]}} {{mm_penalty=[[@{total_mm_penalty}]]}} {{skill=[[@{skill_softleather_total_bonus}]]}} {{underflow=[[1d100!>95 * -1]]}}">
+                            <button type="roll" name="attr_softleather_mm" title="Soft leather moving maneuver" value="@{wtype} &{template:movingmaneuver} {{type=Soft Leather Armor}} {{character=@{character_name}}} {{subtags=Moving Maneuver}} {{roll=[[1d100 + @{skill_softleather_total_bonus}[SKILL] + @{total_mm_penalty}[MM PENALTY] + ?{Modifier|0}[MODIFIER]]]}} {{mm_penalty=[[@{total_mm_penalty}]]}} {{skill=[[@{skill_softleather_total_bonus}]]}} {{underflow=[[1d100!>95 * -1]]}}">
                             </button>
                         </td>
                     </tr>
@@ -1188,7 +1189,7 @@
                             <span class="action-type-label" title="Moving maneuver">MM</span>
                         </td>
                         <td>
-                            <button type="roll" name="attr_rigidleather_mm" title="Rigid leather moving maneuver" value="@{wtype} &{template:movingmaneuver} {{type=Rigid Leather Armor}} {{character=@{character_name}}} {{subtags=Moving Maneuver}} {{roll=[[1d100!>95cs>95cf<05 + @{skill_rigidleather_total_bonus}[SKILL] + @{total_mm_penalty}[MM] + ?{Modifier|0}[MODIFIER]]]}} {{mm_penalty=[[@{total_mm_penalty}]]}} {{skill=[[@{skill_rigidleather_total_bonus}]]}} {{underflow=[[1d100!>95 * -1]]}}">
+                            <button type="roll" name="attr_rigidleather_mm" title="Rigid leather moving maneuver" value="@{wtype} &{template:movingmaneuver} {{type=Rigid Leather Armor}} {{character=@{character_name}}} {{subtags=Moving Maneuver}} {{roll=[[1d100!>95cs>95cf<05 + @{skill_rigidleather_total_bonus}[SKILL] + @{total_mm_penalty}[MM PENALTY] + ?{Modifier|0}[MODIFIER]]]}} {{mm_penalty=[[@{total_mm_penalty}]]}} {{skill=[[@{skill_rigidleather_total_bonus}]]}} {{underflow=[[1d100!>95 * -1]]}}">
                             </button>
                         </td>                    
                     </tr>
@@ -1229,7 +1230,7 @@
                             <span class="action-type-label" title="Moving maneuver">MM</span>
                         </td>
                         <td>
-                            <button type="roll" name="attr_chain_mm" title="Chain moving maneuver" value="@{wtype} &{template:movingmaneuver} {{type=Chain Armor}} {{character=@{character_name}}} {{subtags=Moving maNeuver}} {{roll=[[1d100!>95cs>95cf<05 + @{skill_chain_total_bonus}[SKILL] + @{total_mm_penalty}[MM] + ?{Modifier|0}[MODIFIER]]]}} {{mm_penalty=[[@{total_mm_penalty}]]}} {{skill=[[@{skill_chain_total_bonus}]]}} {{underflow=[[1d100!>95 * -1]]}}">
+                            <button type="roll" name="attr_chain_mm" title="Chain moving maneuver" value="@{wtype} &{template:movingmaneuver} {{type=Chain Armor}} {{character=@{character_name}}} {{subtags=Moving maNeuver}} {{roll=[[1d100!>95cs>95cf<05 + @{skill_chain_total_bonus}[SKILL] + @{total_mm_penalty}[MM PENALTY] + ?{Modifier|0}[MODIFIER]]]}} {{mm_penalty=[[@{total_mm_penalty}]]}} {{skill=[[@{skill_chain_total_bonus}]]}} {{underflow=[[1d100!>95 * -1]]}}">
                             </button>
                         </td>                    
                     </tr>
@@ -1270,7 +1271,7 @@
                             <span class="action-type-label" title="Moving maneuver">MM</span>
                         </td>
                         <td>
-                            <button type="roll" name="attr_plate_mm" title="Plate moving maneuver" value="@{wtype} &{template:movingmaneuver} {{type=Plate Armor}} {{character=@{character_name}}} {{subtags=Moving maNeuver}} {{roll=[[1d100!>95cs>95cf<05 + @{skill_plate_total_bonus}[SKILL] + @{total_mm_penalty}[MM] + ?{Modifier|0}[MODIFIER]]]}} {{mm_penalty=[[@{total_mm_penalty}]]}} {{skill=[[@{skill_plate_total_bonus}]]}} {{underflow=[[1d100!>95 * -1]]}}">
+                            <button type="roll" name="attr_plate_mm" title="Plate moving maneuver" value="@{wtype} &{template:movingmaneuver} {{type=Plate Armor}} {{character=@{character_name}}} {{subtags=Moving maNeuver}} {{roll=[[1d100!>95cs>95cf<05 + @{skill_plate_total_bonus}[SKILL] + @{total_mm_penalty}[MM PENALTY] + ?{Modifier|0}[MODIFIER]]]}} {{mm_penalty=[[@{total_mm_penalty}]]}} {{skill=[[@{skill_plate_total_bonus}]]}} {{underflow=[[1d100!>95 * -1]]}}">
                             </button>
                         </td>                    
                     </tr>
@@ -1336,7 +1337,7 @@
                             <span class="action-type-label" title="Offensive bonus">OB</span>
                         </td>
                         <td>
-                            <button type="roll" name="attr_1hedged_ob" title="1-H Edged Attack Roll" value="@{wtype} &{template:attack} {{type=1-Handed Edged Weapon}} {{character=@{character_name}}} {{subtags=Melee Attack}} {{roll=[[1d100!>95cs>95cf<8 + @{skill_1hedged_total_bonus}[SKILL] + @{effective_hlp}[HITLOSS] * -20 + @{activity_penalty}[ACTIVITY] + @{armgreaves_penalty}[GREAVES]  + ?{Modifier|0}[MODIFIER]]]}} {{ob_penalty=[[@{effective_hlp} * -20 + @{activity_penalty} + @{armgreaves_penalty}]]}} {{skill=[[@{skill_1hedged_total_bonus}]]}} {{primary_critical=[[1d100]]}} {{secondary_critical=[[1d100]]}} {{fumble_roll=[[1d100]]}} {{underflow=[[1d100!>95 * -1]]}}">
+                            <button type="roll" name="attr_1hedged_ob" title="1-H Edged Attack Roll" value="@{wtype} &{template:attack} {{type=1-Handed Edged Weapon}} {{character=@{character_name}}} {{subtags=Melee Attack}} {{roll=[[1d100!>95cs>95cf<8 + @{skill_1hedged_total_bonus}[SKILL] + @{total_ob_penalty}[OB PENALTY] + ?{Modifier|0}[MODIFIER]]]}} {{ob_penalty=[[@{total_ob_penalty}]]}} {{skill=[[@{skill_1hedged_total_bonus}]]}} {{primary_critical=[[1d100]]}} {{secondary_critical=[[1d100]]}} {{fumble_roll=[[1d100]]}} {{underflow=[[1d100!>95 * -1]]}}">
                             </button>
                         </td>
                     </tr>
@@ -1389,7 +1390,7 @@
                             <input type="number" class="autocalc-bonus sheet-autocalc-total" name="attr_skill_1hconc_total_display_bonus" value="(@{skill_1hconc_total_bonus})" disabled />
                             <span class="action-type-label" title="Offensive bonus">OB</span></td>
                         <td>
-                            <button type="roll" name="attr_1hconc_ob" title="1-H Concussion Attack Roll" value="@{wtype} &{template:attack} {{type=1-Handed Concussion Weapon}} {{character=@{character_name}}} {{subtags=Melee Attack}} {{roll=[[1d100!>95cs>95cf<8 + @{skill_1hconc_total_bonus}[SKILL] + @{effective_hlp} * -20 + @{activity_penalty}[ACTIVITY] + @{armgreaves_penalty}[GREAVES] + ?{Modifier|0}[MODIFIER]]]}} {{ob_penalty=[[@{effective_hlp} * -20 + @{activity_penalty} + @{armgreaves_penalty}]]}} {{skill=[[@{skill_1hconc_total_bonus}]]}} {{primary_critical=[[1d100]]}} {{secondary_critical=[[1d100]]}} {{fumble_roll=[[1d100]]}} {{underflow=[[1d100!>95 * -1]]}}">
+                            <button type="roll" name="attr_1hconc_ob" title="1-H Concussion Attack Roll" value="@{wtype} &{template:attack} {{type=1-Handed Concussion Weapon}} {{character=@{character_name}}} {{subtags=Melee Attack}} {{roll=[[1d100!>95cs>95cf<8 + @{skill_1hconc_total_bonus}[SKILL] + @{total_ob_penalty}[OB PENALTY] ?{Modifier|0}[MODIFIER]]]}} {{ob_penalty=[[@{total_ob_penalty}]]}} {{skill=[[@{skill_1hconc_total_bonus}]]}} {{primary_critical=[[1d100]]}} {{secondary_critical=[[1d100]]}} {{fumble_roll=[[1d100]]}} {{underflow=[[1d100!>95 * -1]]}}">
                             </button>
                         </td>
                     </tr>
@@ -1442,7 +1443,7 @@
                             <span class="action-type-label" title="Offensive bonus">OB</span>
                         </td>
                         <td>
-                            <button type="roll" name="attr_2handed_ob" title="2-Handed Attack Roll" value="@{wtype} &{template:attack} {{type=2-Handed Weapon}} {{character=@{character_name}}} {{subtags=Melee Attack}} {{roll=[[1d100!>95cs>95cf<8 + @{skill_2handed_total_bonus} + @{effective_hlp} * -20 + @{activity_penalty} + @{armgreaves_penalty} + ?{Modifier|0}]]}} {{ob_penalty=[[@{effective_hlp} * -20 + @{activity_penalty} + @{armgreaves_penalty}]]}} {{skill=[[@{skill_2handed_total_bonus}]]}} {{primary_critical=[[1d100]]}} {{secondary_critical=[[1d100]]}} {{fumble_roll=[[1d100]]}} {{underflow=[[1d100!>95 * -1]]}}">
+                            <button type="roll" name="attr_2handed_ob" title="2-Handed Attack Roll" value="@{wtype} &{template:attack} {{type=2-Handed Weapon}} {{character=@{character_name}}} {{subtags=Melee Attack}} {{roll=[[1d100!>95cs>95cf<8 + @{skill_2handed_total_bonus} + @{total_ob_penalty}[OB PENALTY] + ?{Modifier|0}[MODIFIER]]]}} {{ob_penalty=[[@{total_ob_penalty}]]}} {{skill=[[@{skill_2handed_total_bonus}]]}} {{primary_critical=[[1d100]]}} {{secondary_critical=[[1d100]]}} {{fumble_roll=[[1d100]]}} {{underflow=[[1d100!>95 * -1]]}}">
                             </button>
                         </td>                    
                     </tr>
@@ -1494,7 +1495,7 @@
                             <input type="number" class="autocalc-bonus sheet-autocalc-total" name="attr_skill_thrown_total_display_bonus" value="(@{skill_thrown_total_bonus})" disabled />
                             <span class="action-type-label" title="Offensive bonus">OB</span></td>
                         <td>
-                            <button type="roll" name="attr_thrown_ob" title="Thrown Attack Roll" value="@{wtype} &{template:attack} {{type=Thrown Weapon}} {{character=@{character_name}}} {{subtags=Missile Attack}} {{roll=[[1d100!>95cs>95cf<8 + @{skill_thrown_total_bonus} + @{effective_hlp} * -20 + @{activity_penalty} + @{armgreaves_penalty} + ?{Modifier|0}]]}} {{ob_penalty=[[@{effective_hlp} * -20 + @{activity_penalty} + @{armgreaves_penalty}]]}} {{skill=[[@{skill_thrown_total_bonus}]]}} {{primary_critical=[[1d100]]}} {{secondary_critical=[[1d100]]}} {{fumble_roll=[[1d100]]}} {{underflow=[[1d100!>95 * -1]]}}">
+                            <button type="roll" name="attr_thrown_ob" title="Thrown Attack Roll" value="@{wtype} &{template:attack} {{type=Thrown Weapon}} {{character=@{character_name}}} {{subtags=Missile Attack}} {{roll=[[1d100!>95cs>95cf<8 + @{skill_thrown_total_bonus} + @{total_ob_penalty}[OB PENALTY] + ?{Modifier|0}[MODIFIER]]]}} {{ob_penalty=[[@{total_ob_penalty}]]}} {{skill=[[@{skill_thrown_total_bonus}]]}} {{primary_critical=[[1d100]]}} {{secondary_critical=[[1d100]]}} {{fumble_roll=[[1d100]]}} {{underflow=[[1d100!>95 * -1]]}}">
                             </button>
                         </td>                    
                     </tr>
@@ -1547,7 +1548,7 @@
                             <span class="action-type-label" title="Offensive bonus">OB</span>
                         </td>
                         <td>
-                            <button type="roll" name="attr_missile_ob" title="Missile Attack Roll" value="@{wtype} &{template:attack} {{type=Missile Weapon}} {{character=@{character_name}}} {{subtags=Missile Attack}} {{roll=[[1d100!>95cs>95cf<8 + @{skill_missile_total_bonus}[SKILL] + @{effective_hlp} * -20 + @{activity_penalty}[ACTIVITY] + @{armgreaves_penalty}[GREAVES] + ?{Modifier|0}[MODIFIER]]]}} {{ob_penalty=[[@{effective_hlp} * -20 + @{activity_penalty} + @{armgreaves_penalty}]]}} {{skill=[[@{skill_missile_total_bonus}]]}} {{primary_critical=[[1d100]]}} {{secondary_critical=[[1d100]]}} {{fumble_roll=[[1d100]]}} {{underflow=[[1d100!>95 * -1]]}}">
+                            <button type="roll" name="attr_missile_ob" title="Missile Attack Roll" value="@{wtype} &{template:attack} {{type=Missile Weapon}} {{character=@{character_name}}} {{subtags=Missile Attack}} {{roll=[[1d100!>95cs>95cf<8 + @{skill_missile_total_bonus}[SKILL] + @{total_ob_penalty}[OB PENALTY] ?{Modifier|0}[MODIFIER]]]}} {{ob_penalty=[[@{total_ob_penalty}]]}} {{skill=[[@{skill_missile_total_bonus}]]}} {{primary_critical=[[1d100]]}} {{secondary_critical=[[1d100]]}} {{fumble_roll=[[1d100]]}} {{underflow=[[1d100!>95 * -1]]}}">
                             </button>
                         </td>                    
                     </tr>
@@ -1600,7 +1601,7 @@
                             <span class="action-type-label" title="Offensive bonus">OB</span>
                         </td>
                         <td>
-                            <button type="roll" name="attr_polearm_ob" title="Polearm Attack Roll" value="@{wtype} &{template:attack} {{type=Pole-arm}} {{character=@{character_name}}} {{subtags=Melee Attack}} {{roll=[[1d100!>95cs>95cf<8 + @{skill_polearm_total_bonus}[SKILL] + @{effective_hlp} * -20 + @{activity_penalty}[ACTIVITY] + @{armgreaves_penalty}[GREAVES] + ?{Modifier|0}[MODIFIER]]]}} {{ob_penalty=[[@{effective_hlp} * -20 + @{activity_penalty} + @{armgreaves_penalty}]]}} {{skill=[[@{skill_polearm_total_bonus}]]}} {{primary_critical=[[1d100]]}} {{secondary_critical=[[1d100]]}} {{fumble_roll=[[1d100]]}} {{underflow=[[1d100!>95 * -1]]}}">
+                            <button type="roll" name="attr_polearm_ob" title="Polearm Attack Roll" value="@{wtype} &{template:attack} {{type=Pole-arm}} {{character=@{character_name}}} {{subtags=Melee Attack}} {{roll=[[1d100!>95cs>95cf<8 + @{skill_polearm_total_bonus}[SKILL] + @{total_ob_penalty}[OB PENALTY]+ ?{Modifier|0}[MODIFIER]]]}} {{ob_penalty=[[@{total_ob_penalty}]]}} {{skill=[[@{skill_polearm_total_bonus}]]}} {{primary_critical=[[1d100]]}} {{secondary_critical=[[1d100]]}} {{fumble_roll=[[1d100]]}} {{underflow=[[1d100!>95 * -1]]}}">
                             </button>
                         </td>                    
                     </tr>
@@ -1663,7 +1664,7 @@
                             <input type="number" class="autocalc-bonus sheet-autocalc-total" name="attr_skill_climb_total_display_bonus" disabled value="(@{skill_climb_total_bonus})"/>
                             <span class="action-type-label" title="Moving maneuver">MM</span></td>
                         <td>
-                            <button type="roll" name="attr_climb_mm" title="Climbing moving maneuver" value="@{wtype} &{template:movingmaneuver} {{type=Climbing}} {{character=@{character_name}}} {{subtags=Moving maneuver}} {{roll=[[1d100!>95cs>95cf<05 + @{skill_climb_total_bonus}[SKILL] + @{total_mm_penalty}[MM] + ?{Modifier|0}[MODIFIER]]]}} {{mm_penalty=[[@{total_mm_penalty}]]}} {{skill=[[@{skill_climb_total_bonus}]]}} {{underflow=[[1d100!>95 * -1]]}}">
+                            <button type="roll" name="attr_climb_mm" title="Climbing moving maneuver" value="@{wtype} &{template:movingmaneuver} {{type=Climbing}} {{character=@{character_name}}} {{subtags=Moving maneuver}} {{roll=[[1d100!>95cs>95cf<05 + @{skill_climb_total_bonus}[SKILL] + @{total_mm_penalty}[MM PENALTY] + ?{Modifier|0}[MODIFIER]]]}} {{mm_penalty=[[@{total_mm_penalty}]]}} {{skill=[[@{skill_climb_total_bonus}]]}} {{underflow=[[1d100!>95 * -1]]}}">
                             </button>
                         </td>
                     </tr>
@@ -1715,7 +1716,7 @@
                             <span class="action-type-label" title="Moving maneuver">MM</span>
                         </td>
                         <td>
-                            <button type="roll" name="attr_ride_mm" title="Riding moving maneuver" value="@{wtype} &{template:movingmaneuver} {{type=Riding}} {{character=@{character_name}}} {{subtags=Moving Maneuver}} {{roll=[[1d100!>95cs>95cf<05 + @{skill_ride_total_bonus}[SKILL] + @{total_mm_penalty}[MM] + ?{Modifier|0}[MODIFIER]]]}} {{mm_penalty=[[@{total_mm_penalty}]]}} {{skill=[[@{skill_ride_total_bonus}]]}} {{underflow=[[1d100!>95 * -1]]}}">
+                            <button type="roll" name="attr_ride_mm" title="Riding moving maneuver" value="@{wtype} &{template:movingmaneuver} {{type=Riding}} {{character=@{character_name}}} {{subtags=Moving Maneuver}} {{roll=[[1d100!>95cs>95cf<05 + @{skill_ride_total_bonus}[SKILL] + @{total_mm_penalty}[MM PENALTY] + ?{Modifier|0}[MODIFIER]]]}} {{mm_penalty=[[@{total_mm_penalty}]]}} {{skill=[[@{skill_ride_total_bonus}]]}} {{underflow=[[1d100!>95 * -1]]}}">
                             </button>
                         </td>                    
                     </tr>
@@ -1767,7 +1768,7 @@
                             <span class="action-type-label" title="Moving maneuver">MM</span>
                         </td>
                         <td>
-                            <button type="roll" name="attr_swim_mm" title="Swimming moving maneuver" value="@{wtype} &{template:movingmaneuver} {{type=Swimming}} {{character=@{character_name}}} {{subtags=Moving maNeuver}} {{roll=[[1d100!>95cs>95cf<05 + @{skill_swim_total_bonus}[SKILL] + @{total_mm_penalty}[MM] + ?{Modifier|0}[MODIFIER]]]}} {{mm_penalty=[[@{total_mm_penalty}]]}} {{skill=[[@{skill_swim_total_bonus}]]}} {{underflow=[[1d100!>95 * -1]]}}">
+                            <button type="roll" name="attr_swim_mm" title="Swimming moving maneuver" value="@{wtype} &{template:movingmaneuver} {{type=Swimming}} {{character=@{character_name}}} {{subtags=Moving maNeuver}} {{roll=[[1d100!>95cs>95cf<05 + @{skill_swim_total_bonus}[SKILL] + @{total_mm_penalty}[MM PENALTY] + ?{Modifier|0}[MODIFIER]]]}} {{mm_penalty=[[@{total_mm_penalty}]]}} {{skill=[[@{skill_swim_total_bonus}]]}} {{underflow=[[1d100!>95 * -1]]}}">
                             </button>
                         </td>                    
                     </tr>
@@ -1818,7 +1819,7 @@
                             <span class="action-type-label" title="Static maneuver">SM</span>
                         </td>
                         <td>
-                            <button type="roll" name="attr_track_sm" title="Tracking static maneuver" value="@{wtype} &{template:staticmaneuver} {{type=Tracking}} {{character=@{character_name}}} {{subtags=Static Maneuver}} {{roll=[[1d100!>95cs>95cf<05 + @{skill_track_total_bonus}[SKILL] + @{activity_penalty}[ACTIVITY] + ?{Modifier|0}[MODIFIER]]]}} {{sm_penalty=[[@{activity_penalty}]]}} {{skill=[[@{skill_track_total_bonus}]]}} {{underflow=[[1d100!>95 * -1]]}}">
+                            <button type="roll" name="attr_track_sm" title="Tracking static maneuver" value="@{wtype} &{template:staticmaneuver} {{type=Tracking}} {{character=@{character_name}}} {{subtags=Static Maneuver}} {{roll=[[1d100!>95cs>95cf<05 + @{skill_track_total_bonus}[SKILL] + @{activity_penalty}[ACT. PENALTY] + ?{Modifier|0}[MODIFIER]]]}} {{sm_penalty=[[@{activity_penalty}]]}} {{skill=[[@{skill_track_total_bonus}]]}} {{underflow=[[1d100!>95 * -1]]}}">
                             </button>
                         </td>
                     </tr>
@@ -1925,7 +1926,7 @@
                             <span class="action-type-label" title="Special: Movement manuver / Static maneuver">SP</span>
                         </td>
                         <td>
-                            <button type="roll" name="attr_stalkhide_mm" title="Stalk/hide maneuver" value="@{wtype} &{template:stalkhide} {{type=Stalk/hide maneuver}} {{character=@{character_name}}} {{subtags=Movement & Static Maneuver}} {{mm_roll=[[1d100!>95cs>95cf<05 + @{skill_stalkhide_total_bonus}[SKILL] + @{total_mm_penalty}[MM]]]}} {{sm_roll=[[1d100!>95cs>95cf<05 + @{skill_stalkhide_total_bonus}[SKILL] + @{activity_penalty}[ACTIVITY] + ?{Modifier|0}[MODIFIER]]]}} {{sm_penalty=[[@{activity_penalty}]]}} {{mm_penalty=[[@{total_mm_penalty}]]}} {{skill=[[@{skill_stalkhide_total_bonus}]]}} {{underflow=[[1d100!>95 * -1]]}}">
+                            <button type="roll" name="attr_stalkhide_mm" title="Stalk/hide maneuver" value="@{wtype} &{template:stalkhide} {{type=Stalk/hide maneuver}} {{character=@{character_name}}} {{subtags=Movement & Static Maneuver}} {{mm_roll=[[1d100!>95cs>95cf<05 + @{skill_stalkhide_total_bonus}[SKILL] + @{total_mm_penalty}[MM PENALTY]]]}} {{sm_roll=[[1d100!>95cs>95cf<05 + @{skill_stalkhide_total_bonus}[SKILL] + @{activity_penalty}[ACT. PENALTY] + ?{Modifier|0}[MODIFIER]]]}} {{sm_penalty=[[@{activity_penalty}]]}} {{mm_penalty=[[@{total_mm_penalty}]]}} {{skill=[[@{skill_stalkhide_total_bonus}]]}} {{underflow=[[1d100!>95 * -1]]}}">
                             </button>
                         </td>
                     </tr>
@@ -1980,7 +1981,7 @@
                             <span class="action-type-label" title="Static maneuver">SM</span>
                         </td>
                         <td>
-                            <button type="roll" name="attr_picklock_sm" title="Pick lock static maneuver" value="@{wtype} &{template:staticmaneuver} {{type=Picking Locks}} {{character=@{character_name}}} {{subtags=Static Maneuver}}} {{roll=[[1d100!>95cs>95cf<05 + @{skill_picklock_total_bonus}[SKILL] + @{activity_penalty}[ACTIVITY] + ?{Modifier|0}[MODIFIER]]]}} {{sm_penalty=[[@{activity_penalty}]]}} {{skill=[[@{skill_picklock_total_bonus}]]}} {{underflow=[[1d100!>95 * -1]]}}">
+                            <button type="roll" name="attr_picklock_sm" title="Pick lock static maneuver" value="@{wtype} &{template:staticmaneuver} {{type=Picking Locks}} {{character=@{character_name}}} {{subtags=Static Maneuver}}} {{roll=[[1d100!>95cs>95cf<05 + @{skill_picklock_total_bonus}[SKILL] + @{activity_penalty}[ACT. PENALTY] + ?{Modifier|0}[MODIFIER]]]}} {{sm_penalty=[[@{activity_penalty}]]}} {{skill=[[@{skill_picklock_total_bonus}]]}} {{underflow=[[1d100!>95 * -1]]}}">
                             </button>
                         </td>
                     </tr>
@@ -2035,7 +2036,7 @@
                             <span class="action-type-label" title="Static maneuver">SM</span>
                         </td>
                         <td>
-                            <button type="roll" name="attr_disarmtrap_sm" title="Disarm trap static maneuver" value="@{wtype} &{template:staticmaneuver} {{type=Disarming Traps}} {{character=@{character_name}}} {{subtags=Static Maneuver}} {{roll=[[1d100!>95cs>95cf<05 + @{skill_disarmtrap_total_bonus}[SKILL] + @{activity_penalty}[ACTIVITY] + ?{Modifier|0}[MODIFIER]]]}} {{sm_penalty=[[@{activity_penalty}]]}} {{skill=[[@{skill_disarmtrap_total_bonus}]]}} {{underflow=[[1d100!>95 * -1]]}}">
+                            <button type="roll" name="attr_disarmtrap_sm" title="Disarm trap static maneuver" value="@{wtype} &{template:staticmaneuver} {{type=Disarming Traps}} {{character=@{character_name}}} {{subtags=Static Maneuver}} {{roll=[[1d100!>95cs>95cf<05 + @{skill_disarmtrap_total_bonus}[SKILL] + @{activity_penalty}[ACT. PENALTY] + ?{Modifier|0}[MODIFIER]]]}} {{sm_penalty=[[@{activity_penalty}]]}} {{skill=[[@{skill_disarmtrap_total_bonus}]]}} {{underflow=[[1d100!>95 * -1]]}}">
                             </button>
                         </td>
                     </tr>
@@ -2102,7 +2103,7 @@
                             <span class="action-type-label" title="Static maneuver">SM</span>
                         </td>
                         <td>
-                            <button type="roll" name="attr_readrunes_sm" title="Read runes static maneuver" value="@{wtype} &{template:staticmaneuver} {{type=Reading Runes}} {{character=@{character_name}}} {{subtags=Static Maneuver}} {{roll=[[1d100!>95cs>95cf<05 + @{skill_readrunes_total_bonus}[SKILL] + @{activity_penalty}[ACTIVITY] + ?{Modifier|0}[MODIFIER]]]}} {{sm_penalty=[[@{activity_penalty}]]}} {{skill=[[@{skill_readrunes_total_bonus}]]}} {{underflow=[[1d100!>95 * -1]]}}">
+                            <button type="roll" name="attr_readrunes_sm" title="Read runes static maneuver" value="@{wtype} &{template:staticmaneuver} {{type=Reading Runes}} {{character=@{character_name}}} {{subtags=Static Maneuver}} {{roll=[[1d100!>95cs>95cf<05 + @{skill_readrunes_total_bonus}[SKILL] + @{activity_penalty}[ACT. PENALTY] + ?{Modifier|0}[MODIFIER]]]}} {{sm_penalty=[[@{activity_penalty}]]}} {{skill=[[@{skill_readrunes_total_bonus}]]}} {{underflow=[[1d100!>95 * -1]]}}">
                             </button>
                         </td>
                     </tr>
@@ -2205,7 +2206,7 @@
                             <span class="action-type-label" title="Offensive Bonus">OB</span>
                         </td>
                         <td>
-                            <button type="roll" name="attr_directedspells_ob" title="Directed spells attack" value="@{wtype} &{template:attack} {{type=Directed Spell}} {{character=@{character_name}}} {{subtags=Spell Attack}} {{roll=[[1d100!>95cs>95cf<8 + @{skill_directedspells_total_bonus} + @{effective_hlp} * -20 + @{activity_penalty} + @{armgreaves_penalty} + ?{Modifier|0}]]}} {{ob_penalty=[[@{effective_hlp} * -20 + @{activity_penalty} + @{armgreaves_penalty}]]}} {{skill=[[@{skill_directedspells_total_bonus}]]}} {{primary_critical=[[1d100]]}} {{secondary_critical=[[1d100]]}} {{fumble_roll=[[1d100]]}} {{underflow=[[1d100!>95 * -1]]}}">
+                            <button type="roll" name="attr_directedspells_ob" title="Directed spells attack" value="@{wtype} &{template:attack} {{type=Directed Spell}} {{character=@{character_name}}} {{subtags=Spell Attack}} {{roll=[[1d100!>95cs>95cf<8 + @{skill_directedspells_total_bonus}[SKILL] + @{total_ob_penalty}[OB PENALTY] + ?{Modifier|0}[MODIFIER]]]}} {{ob_penalty=[[@{total_ob_penalty}]]}} {{skill=[[@{skill_directedspells_total_bonus}]]}} {{primary_critical=[[1d100]]}} {{secondary_critical=[[1d100]]}} {{fumble_roll=[[1d100]]}} {{underflow=[[1d100!>95 * -1]]}}">
                             </button>
                         </td>
                     </tr>
@@ -2263,7 +2264,7 @@
                             <span class="action-type-label" title="Static maneuver">SM</span>
                         </td>
                         <td>
-                            <button type="roll" name="attr_perception_sm" title="Perception static maneuver" value="@{wtype} &{template:staticmaneuver} {{type=Perception}} {{character=@{character_name}}} {{subtags=Static Maneuver}} {{roll=[[1d100!>95cs>95cf<05 + @{skill_perception_total_bonus}[SKILL] + @{activity_penalty}[ACTIVITY] + ?{Modifier|0}[MODIFIER]]]}} {{sm_penalty=[[@{activity_penalty}]]}} {{skill=[[@{skill_perception_total_bonus}]]}} {{underflow=[[1d100!>95 * -1]]}}">
+                            <button type="roll" name="attr_perception_sm" title="Perception static maneuver" value="@{wtype} &{template:staticmaneuver} {{type=Perception}} {{character=@{character_name}}} {{subtags=Static Maneuver}} {{roll=[[1d100!>95cs>95cf<05 + @{skill_perception_total_bonus}[SKILL] + @{activity_penalty}[ACT. PENALTY] + ?{Modifier|0}[MODIFIER]]]}} {{sm_penalty=[[@{activity_penalty}]]}} {{skill=[[@{skill_perception_total_bonus}]]}} {{underflow=[[1d100!>95 * -1]]}}">
                                 <!-- -->
                             </button>
                         </td>
@@ -2303,7 +2304,7 @@
                         </td>
                         <td>
                             <input type="hidden" name="attr_skill_bodydev_rank_bonus" value="0"/>
-                            <input type="number" class="autocalc-stat-right" name="attr_skill_bodydev_rank_display_bonus" value="(@{skill_bodydev_rank_bonus)" disabled />
+                            <input type="number" class="autocalc-stat-right" name="attr_skill_bodydev_rank_display_bonus" value="(@{skill_bodydev_rank_bonus})" disabled />
                         </td>
                         <td>CO<input type="number" class="autocalc-stat-right" name="attr_skill_bodydev_stat_bonus" value="(@{stat_co_total_bonus})" disabled /></td>
                         <td>
@@ -2343,13 +2344,13 @@
                         <td><input type="number" name="attr_skill_basespell_spec1_bonus" value="0"/></td>
                         <td><input type="number" class="autocalc-stat-right" name="attr_skill_basespell_spec2_bonus" value="0"/></td>
                         <td>
-                            <input type="hidden" name="attr_skill_basespells_total_bonus" value="0"/>
+                            <input type="hidden" name="attr_skill_basespell_total_bonus" value="0"/>
                             <input type="number" class="autocalc-bonus sheet-autocalc-total" name="attr_skill_basespell_total_display_bonus" disabled 
-                            value="(@{skill_basespells_total_bonus})"/>
+                            value="(@{skill_basespell_total_bonus})"/>
                             <span class="action-type-label" title="Offensive Bonus">OB</span>
                         </td>
                         <td>
-                            <button type="roll" name="attr_basespells_ob" title="Base spell attack" value="@{wtype} &{template:attack} {{type=Base Spells}} {{character=@{character_name}}} {{subtags=Spell Attack (UM)}} {{roll=[[1d100cf<0+ @{skill_basespell_total_bonus}[SKILL] + @{effective_hlp} * -20 + @{activity_penalty}[ACTIVITY] + @{armgreaves_penalty}[GREAVES]]]}} {{ob_penalty=[[@{effective_hlp} * -20 + @{activity_penalty} + @{armgreaves_penalty} + ?{Modifier|0}]]}} {{skill=[[@{skill_basespell_total_bonus}]]}} {{underflow=[[1d100!>95 * -1]]}} {{fumble_roll=[[1d100]]}}">
+                            <button type="roll" name="attr_basespell_ob" title="Base spell attack" value="@{wtype} &{template:attack} {{type=Base Spells}} {{character=@{character_name}}} {{subtags=Spell Attack (UM)}} {{roll=[[1d100cf<0+ @{skill_basespell_total_bonus}[SKILL] + @{total_ob_penalty}[OB_PENALTY] + ?{Modifier|0}]]}} {{ob_penalty=[[@{total_ob_penalty}]]}} {{skill=[[@{skill_basespell_total_bonus}]]}} {{underflow=[[1d100!>95 * -1]]}} {{fumble_roll=[[1d100]]}}">
                                 <!-- -->
                             </button>
                         </td>
@@ -2376,7 +2377,7 @@
                             <span class="action-type-label" title="Static maneuver">SM</span>
                         </td>
                         <td>
-                            <button type="roll" name="attr_leadership_sm" title="Leadership maneuver" value="@{wtype} &{template:staticmaneuver} {{type=Leadership}} {{character=@{character_name}}} {{subtags=Static Maneuver}} {{roll=[[1d100!>95cs>95cf<05 + @{skill_leadership_total_bonus}[SKILL] + @{activity_penalty}[ACTIVITY]]]}} {{sm_penalty=[[@{activity_penalty} + ?{Modifier|0}]]}} {{skill=[[@{skill_leadership_total_bonus}]]}} {{underflow=[[1d100!>95 * -1]]}} {{primary_critical=[[1d100]]}} {{secondary_critical=[[1d100]]}} {{underflow=[[1d100!>95 * -1]]}}">
+                            <button type="roll" name="attr_leadership_sm" title="Leadership maneuver" value="@{wtype} &{template:staticmaneuver} {{type=Leadership}} {{character=@{character_name}}} {{subtags=Static Maneuver}} {{roll=[[1d100!>95cs>95cf<05 + @{skill_leadership_total_bonus}[SKILL] + @{activity_penalty}[ACT. PENALTY]]]}} {{sm_penalty=[[@{activity_penalty} + ?{Modifier|0}]]}} {{skill=[[@{skill_leadership_total_bonus}]]}} {{underflow=[[1d100!>95 * -1]]}} {{primary_critical=[[1d100]]}} {{secondary_critical=[[1d100]]}} {{underflow=[[1d100!>95 * -1]]}}">
                                 <!-- -->
                             </button>
                         </td>                        
@@ -2866,7 +2867,7 @@
                         <div class="table-cell"><input class="text-weapon-stat" type="number" name="attr_weapon_magic_bonus" value="0" /></div>
                         <div class="table-cell"><input type="number" name="attr_weapon_skill_bonus" value="0" /></div>
                         <div class="table-cell">
-                            <button type="roll" name="attr_weapon_roll" title="Weapon Attack Roll" value="@{wtype} &{template:weaponattack} {{type=@{weapon_name}}} {{character=@{character_name}}} {{roll=[[1d100!>95cs>95cf<[[@{weapon_fumble_max}]] + @{weapon_craft_bonus} + @{weapon_magic_bonus} + @{weapon_skill_bonus} + @{effective_hlp} * -20 + @{activity_penalty} + @{armgreaves_penalty} - ?{Parry|0}]]}} {{fumble_roll=[[1d100]]}} {{fumble_crit=[[1d100]] @{weapon_fumble_critical}}} {{underflow=[[1d100!>95 * -1]]}} {{primary_critical=[[1d100]] @{weapon_primary_critical}}} {{secondary_critical=[[1d100]] @{weapon_secondary_critical}}} {{reloadpenalty=@{weapon_reload_penalty}}} {{noleather=@{weapon_noleather_bonus}}} {{chainplate=@{weapon_chainplate_bonus}}} {{parry=[[?{Parry|0}]]}} {{ob_penalty=[[@{effective_hlp} * -20 + @{activity_penalty} + @{armgreaves_penalty}]]}}">
+                            <button type="roll" name="attr_weapon_roll" title="Weapon Attack Roll" value="@{wtype} &{template:weaponattack} {{type=@{weapon_name}}} {{character=@{character_name}}} {{roll=[[1d100!>95cs>95cf<[[@{weapon_fumble_max}]] + @{weapon_craft_bonus} + @{weapon_magic_bonus} + @{weapon_skill_bonus} + @{total_ob_penalty} - ?{Parry|0}]]}} {{fumble_roll=[[1d100]]}} {{fumble_crit=[[1d100]] @{weapon_fumble_critical}}} {{underflow=[[1d100!>95 * -1]]}} {{primary_critical=[[1d100]] @{weapon_primary_critical}}} {{secondary_critical=[[1d100]] @{weapon_secondary_critical}}} {{reloadpenalty=@{weapon_reload_penalty}}} {{noleather=@{weapon_noleather_bonus}}} {{chainplate=@{weapon_chainplate_bonus}}} {{parry=[[?{Parry|0}]]}} {{ob_penalty=[[@{total_ob_penalty}]]}}">
                             </button>
                         </div>
                     </fieldset>
@@ -4613,7 +4614,7 @@ resistances.forEach( rr => {
 
 /* Primary skills worker */
 
-const primarySkills = ["noarmor", "softleather", "rigidleather", "chain", "plate", "1hedged", "1hconc", "2handed", "thrown", "missile", "polearm", "climb", "ride", "swim", "track", "ambush", "stalkhide", "picklock", "disarmtrap", "readrunes", "useitems", "directedspells", "perception", "bodydev", "basespells", "leadership"];
+const primarySkills = ["noarmor", "softleather", "rigidleather", "chain", "plate", "1hedged", "1hconc", "2handed", "thrown", "missile", "polearm", "climb", "ride", "swim", "track", "ambush", "stalkhide", "picklock", "disarmtrap", "readrunes", "useitems", "directedspells", "perception", "bodydev", "basespell", "leadership"];
 
 primarySkills.forEach( ps => {
     on("sheet:opened " + [`change:skill_${ps}_5rank1`, `change:skill_${ps}_5rank2`, `change:skill_${ps}_5rank3`, `change:skill_${ps}_5rank4`, `change:skill_${ps}_5rank5`, `change:skill_${ps}_5rank6`, `change:skill_${ps}_5rank7`, `change:skill_${ps}_5rank8`, `change:skill_${ps}_5rank9`, `change:skill_${ps}_5rank10`, `change:skill_${ps}_2rank1`, `change:skill_${ps}_2rank2`, `change:skill_${ps}_2rank3`, `change:skill_${ps}_2rank4`, `change:skill_${ps}_2rank5`, `change:skill_${ps}_stat_bonus`, `change:skill_${ps}_prof_bonus`, `change:skill_${ps}_race_bonus`, `change:skill_${ps}_item_bonus`, `change:skill_${ps}_spec1_bonus`, `change:skill_${ps}_spec2_bonus`].join(" "), 
@@ -4628,7 +4629,7 @@ primarySkills.forEach( ps => {
             });
 
             let initial_bonus = -25;
-            if (ps == "ambush" || ps == "bodydev" || ps == "basespells" || ps == "leadership") {
+            if (ps == "ambush" || ps == "bodydev" || ps == "basespell" || ps == "leadership") {
                 initial_bonus = 0;
             }   
 
@@ -4642,7 +4643,7 @@ primarySkills.forEach( ps => {
 
             let total_bonus = rank_bonus + stat_bonus + prof_bonus + race_bonus + item_bonus + spec1_bonus + spec2_bonus;
 
-            TAS.log("Rank bonus for " + ps + " = " + rank_bonus); 
+            TAS.log("Rank bonus for " + ps + " = " + rank_bonus + " (" + `skill_${ps}_rank_bonus` + ")"); 
             TAS.log("Total bonus for " + ps + " = " + total_bonus + " (" + `skill_${ps}_total_bonus` + ")");
 
             setAttrs({
@@ -4653,9 +4654,6 @@ primarySkills.forEach( ps => {
         });
     });   
 });
-
-
-
 
 /* Encumbrance penalty total worker */
 on("sheet:opened change:stat_st_total_bonus change:encumbrance_penalty", function() {
@@ -4684,10 +4682,49 @@ on("sheet:opened change:hit_points change:skill_bodydev_total_bonus", function()
         if (hp * 2 < hp_total) {
             hlp = -20;
         }
-        TAS.log("HIT LOSS PENALTY hp:" + hp + " hpTotal:" + hpTotal + " => " + hlp); 
+        TAS.log("HIT LOSS PENALTY hp:" + hp + " hpTotal:" + hp_total + " => " + hlp); 
 
         setAttrs({
-            "total_hit_loss_penalty": hlp
+            "total_hitloss_penalty": hlp
+        });
+    });
+});
+
+/* Movement maneuver penalty worker */
+on("sheet:opened change:status_stunned change:status_down change:status_onelimbout change:activity_penalty change:total_enc_penalty change:leggreaves_penalty", function() {
+    getAttrs(["status_stunned", "status_down", "status_onelimbout", "activity_penalty", "total_enc_penalty", "leggreaves_penalty"], function(values) {
+
+        let status_stunned = parseInt(values["status_stunned"]) || 0;
+        let status_down = parseInt(values["status_down"]) || 0;
+        let status_onelimbout = parseInt(values["status_onelimbout"]) || 0;
+        let activity_penalty = parseInt(values["activity_penalty"]) || 0;
+        let total_enc_penalty = parseInt(values["total_enc_penalty"]) || 0;
+        let leggreaves_penalty = parseInt(values["leggreaves_penalty"]) || 0;
+
+        let total_mm_penalty = status_stunned + status_down + status_onelimbout + activity_penalty + total_enc_penalty + leggreaves_penalty;
+
+        TAS.log("MM PENALTY:" + total_mm_penalty); 
+
+        setAttrs({
+            "total_mm_penalty": total_mm_penalty
+        });
+    });
+});
+
+/* Offensive penalty worker */
+on("sheet:opened change:activity_penalty change:total_hitloss_penalty change:armgreaves_penalty", function() {
+    getAttrs(["activity_penalty", "total_hitloss_penalty", "armgreaves_penalty"], function(values) {
+
+        let activity_penalty = parseInt(values["activity_penalty"]) || 0;
+        let total_hitloss_penalty = parseInt(values["total_hitloss_penalty"]) || 0;
+        let armgreaves_penalty = parseInt(values["armgreaves_penalty"]) || 0;
+
+        let total_ob_penalty = activity_penalty + total_hitloss_penalty + armgreaves_penalty;
+
+        TAS.log("OB PENALTY:" + total_ob_penalty); 
+
+        setAttrs({
+            "total_ob_penalty": total_ob_penalty
         });
     });
 });
@@ -5994,7 +6031,7 @@ on("sheet:opened change:level change:profession", function(eventInfo) {
             "skill_useitems_prof_bonus": bonuses["magical_skill_profession_bonus"] * intLevel || 0,
             "skill_directedspells_prof_bonus": bonuses["directedspell_skill_profession_bonus"] * intLevel || 0,
             "skill_perception_prof_bonus": bonuses["perception_skill_profession_bonus"] * intLevel || 0,
-            "skill_basespells_prof_bonus": bonuses["basespell_skill_profession_bonus"] * intLevel || 0,
+            "skill_basespell_prof_bonus": bonuses["basespell_skill_profession_bonus"] * intLevel || 0,
             "skill_bodydev_prof_bonus": bonuses["bodydev_skill_profession_bonus"] * intLevel || 0,
             "movingmaneuver_profession_development": bonuses["movingmaneuver_profession_development"] || 0,
             "weapon_profession_development": bonuses["weapon_profession_development"] || 0,
