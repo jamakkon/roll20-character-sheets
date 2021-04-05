@@ -322,7 +322,7 @@
                             <span class="action-type-label" title="Resistance roll">RR</span>
                         </td>
                         <td>
-                            <button type="roll" name="attr_channeling_rr" title="Channeling Resistance Roll" value="@{wtype} &{template:resistanceroll} {{type=Channeling}} {{character=@{character_name}}} {{subtags=Resistance Roll}} {{roll=[[1d100 + @{channeling_total_bonus}[CHANNELING] + ?{Modifier|0}[MODIFIER]]]}} {{bonus=[[@{channeling_total_bonus}]]}}">
+                            <button type="roll" name="attr_channeling_rr" title="Channeling Resistance Roll" value="@{wtype} &{template:resistanceroll} {{type=Channeling}} {{character=@{character_name}}} {{subtags=Resistance Roll}} {{roll=[[1d100 + @{channeling_total_bonus}[BONUS] + ?{Modifier|0}[MODIFIER]]]}} {{bonus=[[@{channeling_total_bonus}]]}}">
                                 <!-- -->
                             </button>
                         </td>
@@ -344,7 +344,7 @@
                             <span class="action-type-label" title="Resistance roll">RR</span>
                         </td>
                         <td>
-                            <button type="roll" name="attr_poison_rr" title="Poison Resistance Roll" value="@{wtype} &{template:resistanceroll} {{type=Poison}} {{character=@{character_name}}} {{subtags=Resistance Roll}} {{roll=[[1d100 + @{poison_total_bonus}[POISON] + ?{Modifier|0}[MODIFIER]]]}} {{bonus=[[@{poison_total_bonus}]]}}">
+                            <button type="roll" name="attr_poison_rr" title="Poison Resistance Roll" value="@{wtype} &{template:resistanceroll} {{type=Poison}} {{character=@{character_name}}} {{subtags=Resistance Roll}} {{roll=[[1d100 + @{poison_total_bonus}[BONUS] + ?{Modifier|0}[MODIFIER]]]}} {{bonus=[[@{poison_total_bonus}]]}}">
                                 <!-- -->
                             </button>
                         </td>
@@ -366,7 +366,7 @@
                             <span class="action-type-label" title="Resistance roll">RR</span>
                         </td>
                         <td>
-                            <button type="roll" name="attr_disease_rr" title='Disease Resistance Roll' value="@{wtype} &{template:resistanceroll} {{type=Disease}} {{character=@{character_name}}} {{subtags=Resistance Roll}} {{roll=[[1d100 + @{disease_total_bonus}[DISEASE] + ?{Modifier|0}[MODIFIER]]]}} {{bonus=[[@{disease_total_bonus}]]}}">
+                            <button type="roll" name="attr_disease_rr" title='Disease Resistance Roll' value="@{wtype} &{template:resistanceroll} {{type=Disease}} {{character=@{character_name}}} {{subtags=Resistance Roll}} {{roll=[[1d100 + @{disease_total_bonus}[BONUS] + ?{Modifier|0}[MODIFIER]]]}} {{bonus=[[@{disease_total_bonus}]]}}">
                                 <!-- -->
                             </button>
                         </td>
@@ -388,7 +388,7 @@
                             <span class="action-type-label" title="Resistance roll">RR</span>
                         </td>
                         <td>
-                            <button type="roll" name="attr_cold_rr" title='Cold Resistance Roll' value="@{wtype} &{template:resistanceroll} {{type=Cold}} {{character=@{character_name}}} {{subtags=Resistance Roll}} {{roll=[[1d100 + @{cold_total_bonus}[COLD] + ?{Modifier|0}[MODIFIER]]]}} {{bonus=[[@{cold_total_bonus}]]}}">
+                            <button type="roll" name="attr_cold_rr" title='Cold Resistance Roll' value="@{wtype} &{template:resistanceroll} {{type=Cold}} {{character=@{character_name}}} {{subtags=Resistance Roll}} {{roll=[[1d100 + @{cold_total_bonus}[BONUS] + ?{Modifier|0}[MODIFIER]]]}} {{bonus=[[@{cold_total_bonus}]]}}">
                                 <!-- -->
                             </button>
                         </td>
@@ -410,7 +410,7 @@
                             <span class="action-type-label" title="Resistance roll">RR</span>
                         </td>
                         <td>
-                            <button type="roll" name="attr_heat_rr" title='Heat Resistance Roll' value="@{wtype} &{template:resistanceroll} {{type=Heat}} {{character=@{character_name}}} {{subtags=Resistance Roll}} {{roll=[[1d100 + @{heat_total_bonus}[HEAT] + ?{Modifier|0}[MODIFIER]]]}} {{bonus=[[@{heat_total_bonus}]]}}">
+                            <button type="roll" name="attr_heat_rr" title='Heat Resistance Roll' value="@{wtype} &{template:resistanceroll} {{type=Heat}} {{character=@{character_name}}} {{subtags=Resistance Roll}} {{roll=[[1d100 + @{heat_total_bonus}[BONUS] + ?{Modifier|0}[MODIFIER]]]}} {{bonus=[[@{heat_total_bonus}]]}}">
                                 <!-- -->
                             </button>
                         </td>
@@ -3619,7 +3619,7 @@
                                 <input type="number" name="attr_attack3_ob" value="0"/> <span class="action-type-label" title="Offensive bonus">OB</span>
                             </td>
                             <td>
-                                <button type="roll" name="attr_tertiary_ob" title="Tertiary Attack Roll" value="@{wtype} &{template:attack} {{type=@{attack3_name}}} {{character=@{character_name}}} {{subtags=@{attack3_size} @{attack3_type} Attack}} {{roll=[[1d100!>95cs>95cf<8 + @{attack3_ob}[BONUS] + @{creature_total_ob_penalty}[PENALTY]  + ?{Modifier|0}[MODIFIER]]]}} {{ob_penalty=[[@{creature_total_ob_penalty}]]}} {{skill=[[@{attack3_ob}]]}} {{primary_critical=[[1d100]]}} {{secondary_critical=[[1d100]]}} {{fumble_roll=[[1d100]]}} {{underflow=[[1d100!>95 * -1]]}}">
+                                <button type="roll" name="attr_tertiary_ob" title="Tertiary Attack Roll" value="@{wtype} &{template:attack} {{type=@{attack3_name}}} {{character=@{character_name}}} {{subtags=@{attack3_size} @{attack3_type} Attack}} {{roll=[[1d100!>95cs>95cf<8 + @{attack3_ob}[BONUS] + @{creature_total_ob_penalty}[PENALTY] + ?{Modifier|0}[MODIFIER]]]}} {{ob_penalty=[[@{creature_total_ob_penalty}]]}} {{skill=[[@{attack3_ob}]]}} {{primary_critical=[[1d100]]}} {{secondary_critical=[[1d100]]}} {{fumble_roll=[[1d100]]}} {{underflow=[[1d100!>95 * -1]]}}">
                                     <!-- -->
                                 </button>
                             </td>
@@ -5042,7 +5042,7 @@ function raceBonuses(race) {
             bonuses["skill_picklock_ad_ranks"] = 0;
             bonuses["skill_disarmtrap_ad_ranks"] = 0;
             bonuses["skill_readrunes_ad_ranks"] = 1;
-            bonuses["skill_useitems_ad_ranks"] = 1;
+            bonuses["skill_useitems_ad_ranks"] = 0;
             bonuses["skill_perception_ad_ranks"] = 3;
             bonuses["skill_bodydev_ad_ranks"] = 1;
             bonuses["race_spell_ad_ranks"] = 20;
@@ -5125,7 +5125,7 @@ function raceBonuses(race) {
             bonuses["skill_bodydev_ad_ranks"] = 2;
             bonuses["race_spell_ad_ranks"] = 0;
             bonuses["race_language_ad_ranks"] = 3;
-            bonuses["race_bg_options"] = 3;
+            bonuses["race_bg_options"] = 5;
             break;    
         case "Beorning":
             bonuses["stat_st_race_bonus"] = 5;
@@ -5210,7 +5210,6 @@ function raceBonuses(race) {
             bonuses["skill_missile_race_bonus"] = 10;
             bonuses["skill_polearm_race_bonus"] = 10;
             bonuses["skill_directedspells_race_bonus"] = 10;
-            bonuses["skill_directedspells_race_bonus"] = 10;
             bonuses["skill_basespell_race_bonus"] = 10;
             bonuses["skill_sailing_race_bonus"] = 25;
             break;    
@@ -5251,7 +5250,7 @@ function raceBonuses(race) {
             bonuses["race_spell_ad_ranks"] = 5;
             bonuses["race_language_ad_ranks"] = 5;
             bonuses["race_bg_options"] = 5;
-            bonuses["skill_starwatching_race_bonus"] = 25;
+            bonuses["skill_stargazing_race_bonus"] = 25;
             bonuses["skill_weatherwatching_race_bonus"] = 25;
             break;    
         case "Dorwinrim":
@@ -5360,13 +5359,13 @@ function raceBonuses(race) {
             bonuses["skill_ride_ad_ranks"] = 0;
             bonuses["skill_swim_ad_ranks"] = 1;
             bonuses["skill_ambush_ad_ranks"] = 0;
-            bonuses["skill_stalkhide_ad_ranks"] = 0;
+            bonuses["skill_stalkhide_ad_ranks"] = 2;
             bonuses["skill_picklock_ad_ranks"] = 0;
             bonuses["skill_disarmtrap_ad_ranks"] = 0;
             bonuses["skill_readrunes_ad_ranks"] = 0;
             bonuses["skill_useitems_ad_ranks"] = 0;
             bonuses["skill_perception_ad_ranks"] = 1;
-            bonuses["skill_bodydev_ad_ranks"] = 2;
+            bonuses["skill_bodydev_ad_ranks"] = 3;
             bonuses["race_spell_ad_ranks"] = 2;
             bonuses["race_language_ad_ranks"] = 2;
             bonuses["race_bg_options"] = 4;
@@ -5412,7 +5411,6 @@ function raceBonuses(race) {
             bonuses["race_spell_ad_ranks"] = 2;
             bonuses["race_language_ad_ranks"] = 2;
             bonuses["race_bg_options"] = 4;
-            bonuses["skill_animalhandling_race_bonus"] = 20;
             break;    
         case "Eriadoran":
             bonuses["stat_st_race_bonus"] = 5;
@@ -5676,7 +5674,7 @@ function raceBonuses(race) {
             bonuses["skill_readrunes_ad_ranks"] = 0;
             bonuses["skill_useitems_ad_ranks"] = 0;
             bonuses["skill_perception_ad_ranks"] = 1;
-            bonuses["skill_bodydev_ad_ranks"] = 3;
+            bonuses["skill_bodydev_ad_ranks"] = 2;
             bonuses["race_spell_ad_ranks"] = 3;
             bonuses["race_language_ad_ranks"] = 2;
             bonuses["race_bg_options"] = 5;
