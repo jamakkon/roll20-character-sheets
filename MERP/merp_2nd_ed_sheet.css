@@ -159,6 +159,13 @@ select::-ms-expand {
     font-weight: normal;
 }
 
+.sheet-main .sheet-devpts-label, .sheet-main .sheet-devpts-label input.sheet-autocalc-devpts-right {
+    font-weight: normal;
+    color: #a1a1a1;
+    width: 17px;
+}
+
+
 .sheet-main .sheet-skill-label-bold {
     font-weight: bold;
 }

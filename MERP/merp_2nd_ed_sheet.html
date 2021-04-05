@@ -1073,10 +1073,9 @@
                     <tr>
                         <td colspan="14">
                             <span class="skill-heading">Movement and Maneuver</span>
-                            <span class="skill-label">
-                                <input class="autocalc-stat-right" type="number" name="attr_movingmaneuver_display_profession_development" value="@{movingmaneuver_profession_development}" disabled title="Number of rank points per level.  To raise a skill 1 rank = 1 point, 2 ranks = 3 points"/>
-                                <input type="hidden" name="attr_movingmaneuver_profession_development" value="0"/>
-                                /LEVEL
+                            <input type="hidden" name="attr_movingmaneuver_profession_development" value="0"/>
+                            <span class="devpts-label" title="Number of professional development points per level.  To raise a skill 1 rank = 1 point, 2 ranks = 3 points">[ dev pts
+                                <input class="autocalc-devpts-right" type="number" name="attr_movingmaneuver_display_profession_development" value="@{movingmaneuver_profession_development}" disabled /> /lvl ]
                             </span>
                         </td>
                     </tr>
@@ -1279,10 +1278,9 @@
                     <tr>
                         <td colspan="14">
                             <span class="skill-heading">Weapon Skills</span>
-                            <span class="skill-label">
-                                <input class="autocalc-stat-right" type="number" name="attr_weapon_display_profession_development" value="@{weapon_profession_development}" disabled title="Number of rank points per level.  To raise a skill 1 rank = 1 point, 2 ranks = 3 points"/>
-                                <input type="hidden" name="attr_weapon_profession_development" value="0"/>
-                                /LEVEL
+                            <input type="hidden" name="attr_weapon_profession_development" value="0"/>
+                            <span class="devpts-label" title="Number of professional development points per level.  To raise a skill 1 rank = 1 point, 2 ranks = 3 points">[ dev pts
+                                <input class="autocalc-devpts-right" type="number" name="attr_weapon_display_profession_development" value="@{weapon_profession_development}" disabled /> /lvl ]
                             </span>
                         </td>
                     </tr>
@@ -1609,10 +1607,9 @@
                     <tr>
                         <td colspan="14">
                             <span class="skill-heading">General Skills</span>
-                            <span class="skill-label">
-                                <input class="autocalc-stat-right" type="number" name="attr_general_display_profession_development" value="@{general_profession_development}" disabled title="Number of rank points per level.  To raise a skill 1 rank = 1 point, 2 ranks = 3 points" />
-                                <input type="hidden" name="attr_general_profession_development" value="0"/>
-                                /LEVEL
+                            <input type="hidden" name="attr_general_profession_development" value="0"/>
+                            <span class="devpts-label" title="Number of professional development points per level.  To raise a skill 1 rank = 1 point, 2 ranks = 3 points">[ dev pts
+                                <input class="autocalc-devpts-right" type="number" name="attr_general_display_profession_development" value="@{general_profession_development}" disabled /> /lvl ]
                             </span>
                         </td>
                     </tr>
@@ -1827,11 +1824,10 @@
                     <tr>
                         <td colspan="14">
                             <span class="skill-heading">Subterfuge Skills</span>
-                            <span class="skill-label">
-                                <input class="autocalc-stat-right" type="number" name="attr_subterfuge_display_profession_development" value="@{subterfuge_profession_development}" disabled title="Number of rank points per level.  To raise a skill 1 rank = 1 point, 2 ranks = 3 points">
-                                <input type="hidden" name="attr_subterfuge_profession_development" value="0"/>
-                                /LEVEL
-                            </span>
+                            <input type="hidden" name="attr_subterfuge_profession_development" value="0"/>
+                            <span class="devpts-label" title="Number of professional development points per level.  To raise a skill 1 rank = 1 point, 2 ranks = 3 points">[ dev pts
+                                <input class="autocalc-devpts-right" type="number" name="attr_subterfuge_display_profession_development" value="@{subterfuge_profession_development}" disabled /> /lvl ]
+                            </span>                            
                         </td>
                     </tr>
 
@@ -2045,11 +2041,10 @@
                     <tr>
                         <td colspan="14">
                             <span class="skill-heading">Magical Skills</span>
-                            <span class="skill-label">
-                                <input class="autocalc-stat-right" type="number" name="attr_magical_display_profession_development" value="@{magical_profession_development}" disabled title="Number of rank points per level.  To raise a skill 1 rank = 1 point, 2 ranks = 3 points">
-                                <input type="hidden" name="attr_magical_profession_development" value="0"/>
-                                /LEVEL
-                            </span>
+                            <input type="hidden" name="attr_magical_profession_development" value="0"/>
+                            <span class="devpts-label" title="Number of professional development points per level.  To raise a skill 1 rank = 1 point, 2 ranks = 3 points">[ dev pts
+                                <input class="autocalc-devpts-right" type="number" name="attr_magical_display_profession_development" value="@{magical_profession_development}" disabled /> /lvl ]
+                            </span>                            
                         </td>
                     </tr>
 
@@ -2273,11 +2268,10 @@
                     <!-- Body Development -->
                     <tr>
                         <td class="skill-label">Body Dev.
-                            <span class="skill-label">
-                                <input class="autocalc-stat-right" type="number" name="attr_body_display_profession_development" value="@{bodydev_profession_development}" disabled title="Number of rank points per level.  To raise a skill 1 rank = 1 point, 2 ranks = 3 points">
-                                <input type="hidden" name="attr_bodydev_profession_development" value="0"/>
-                                /LEVEL
-                            </span>
+                            <input type="hidden" name="attr_bodydev_profession_development" value="0"/>
+                            <span class="devpts-label" title="Number of professional development points per level.  To raise a skill 1 rank = 1 point, 2 ranks = 3 points">[ dev pts
+                                <input class="autocalc-devpts-right" type="number" name="attr_bodydev_display_profession_development" value="@{bodydev_profession_development}" disabled /> /lvl ]
+                            </span>                            
                         </td>
                         <td>
                             <input type="number" class="autocalc-stat-right" name="attr_skill_bodydev_display_ad_ranks" value="@{skill_bodydev_ad_ranks}" disabled /><input type="hidden" name="attr_skill_bodydev_ad_ranks" value="0" />/
@@ -2497,16 +2491,25 @@
                     </div>
                 </div>
             </div>
+            <div class="tablelike full-width">
+                <div class="table-row">
+                    <div class="table-cell">
+                        <span class="devpts-label" title="Number of professional development points for spell acquisition per level. For each point spend learning a spell list, your chance to learn that list increases by 20%">Spell development points:
+                            <input type="hidden" name="attr_spell_profession_development" value="0"/>
+                            <input class="autocalc-devpts-right" type="number" name="attr_spell_display_profession_development" value="@{spell_profession_development}" disabled /> /lvl 
+                        </span>
+                        <span class="horizontal-spacer">&nbsp;</span>
+                        <span class="devpts-label" title="Percent chance you have at learning a spell list during adolescence."> Adolescence spell list acquisition:
+                            <input type="hidden" name="attr_race_spell_ad_ranks" value="0"/>
+                            <input class="autocalc-devpts-right" type="number" name="attr_race_spell_display_ad_ranks" value="@{race_spell_ad_ranks}" disabled />%.
+                        </span>
+                    </div>
+                </div>
+            </div>
         </div>
 
-        <div class="1colrow">
+        <div class="1colrow">            
             <span class="skill-heading">Spell Lists</span>
-            <input class="autocalc-stat-right" type="number" name="attr_spell_display_profession_development" value="@{spell_profession_development}" disabled title="Number of rank points per level.  For each point spend learning a spell list, your chance to learn that list increases by 20%">
-            <input type="hidden" name="attr_spell_profession_development" value="0"/>
-            <span class="skill-label">Ranks/LEVEL; Adolescent Chance:</span>
-            <input class="autocalc-stat-right" type="number" name="attr_race_spell_display_ad_ranks" value="@{race_spell_ad_ranks}" disabled title="Percent chance you have at learning a spell list during adolescence.">
-            <input type="hidden" name="attr_race_spell_ad_ranks" value="0"/>
-            <span class="skill-label">%</span>
 
             <div class="col sheet-border-box">
                 <fieldset class="repeating_spellists">  
@@ -2786,25 +2789,40 @@
 
     <div class="tab-content sheet-tab4 top-padding">
         <h2>Equipment</h2>
-        <input type="hidden" name="attr_item_total_weight" value="0"/>
-        <input type="hidden" name="attr_item_total_encumbrance" value="0"/>
+
+        <div class="tablelike">
+            <div class="fields-rowlike">
+                <div class="table-cell">
+                    <span class="skill-label" title="Total weight of weapons, items and coins">Total Equipment Weight:</span><input type="number" class="autocalc-weight" name="attr_equipment_total_weight" value="round(@{weapon_total_weight} + @{item_total_weight} + @{coins_total_weight})" disabled /> lbs
+                </div>
+                <div><span>&nbsp;&nbsp;&nbsp;</span></div>
+                <div class="table-cell">
+                    <span class="skill-label" title="Total encumbering weight of weapons, items and coins, i.e., weight of items not worn.">Total Encumbering Weight:</span><input type="number" class="autocalc-weight" name="attr_equipment_total_encumbrance" value="round(@{weapon_total_weight} + @{item_total_encumbrance} + @{coins_total_weight})" disabled /> lbs
+                </div>
+            </div>
+        </div>
+
 
         <div class="row">
             <div class="col border-box full-width">
                 <h3>Weapons</h3>
 
+                <input type="hidden" name="attr_weapon_total_weight" value="0"/>
+                <span class="skill-label" title="Total weight of items and coins">Weapons Total Weight:</span><input type="number" class="autocalc-weight" name="attr_weapons_total_weight" value="round(@{weapon_total_weight})" disabled /> lbs.
+
                 <div class="tablelike">
                     <div class="table-heading fields-rowlike">
                         <div class="table-cell" title="The weapon name">Weapon</div>
                         <div class="table-cell" title="The applied weapons skill.">Weapon Skill</div>
-                        <div class="table-cell" title="The weight of the weapon in pounds">Wt.</div>                        
-                        <div class="table-cell" title="The fumble range.">Fmbl<br/>range</div>
-                        <div class="table-cell" title="The severity of critical obtained when fumbled, if applicable.">Fumble<br/>Critical</div>
+                        <div class="table-cell" title="The weight of the weapon in pounds">Wt.</div>
+                        <div class="table-cell" title="Dropped weapon: a convenience toggle managing the inventory and encumbrance">D.</div>                        
+                        <div class="table-cell" title="The fumble range.">Fmbl</div>
+                        <div class="table-cell" title="The severity of critical obtained when fumbled, if applicable.">Fmbl<br/>Crit.</div>
                         <div class="table-cell" title="The type of critical delivered by the weapon. The letter in parentheses indicates maximum critical that can be obtained.">Primary<br/>Critical</div>
                         <div class="table-cell" title="The type of critical delivered by the weapon, if applicable. The letter in parentheses indicates maximum critical that can be obtained.">Secondary<br/>Critical</div>
-                        <div class="table-cell" title="The base range (BR) in feet for the weapon to be thrown or fired. Short range: Up to BR (No OB mod.). Medium range: up to 2 * BR (-25 OB). Long range: 3 * BR (-50 OB). Max range: 4 * BR (-75 OB).">Base<br/>range</div>
+                        <div class="table-cell" title="The base range (BR) in feet for the weapon to be thrown or fired. Short range: Up to BR (No OB mod.). Medium range: up to 2 * BR (-25 OB). Long range: 3 * BR (-50 OB). Max range: 4 * BR (-75 OB).">Base<br/>Range</div>
                         <div class="table-cell" title="The rounds it takes to reload the weapon to avoid a OB penalty.">Load<br/>Rnds</div>
-                        <div class="table-cell" title="The OB penalty for not taking the indicated rounds to reload the weapon.">Reload<br/>penalty</div>
+                        <div class="table-cell" title="The OB penalty for not taking the indicated rounds to reload the weapon.">Load<br/>Pen.</div>
                         <div class="table-cell" title="The OB modifier against no armor, soft leather armor, or rigid leather armor.">Mod.<br/>N/L</div>
                         <div class="table-cell" title="The OB modifier against chain armor or plate armor.">Mod.<br/>C/P</div>
                         <div class="table-cell" title="Any OB bonus deriving from the weapon, whether magical or non-magical.">Item</div>
@@ -2824,8 +2842,9 @@
                                 <option value="@{skill_polearm_total_bonus}">Polearm</option>
                             </select>
                         </div>
-                        <div class="table-cell"><input class="text-weapon-stat-small" type="number" name="attr_weapon_weight" value="0" /></div>
-                        <div class="table-cell"><input class="text-weapon-stat" type="number" name="attr_weapon_fumble_max" value="0" /></div>
+                        <div class="table-cell"><input class="text-weapon-stat" type="number" name="attr_weapon_weight" value="0" /></div>
+                        <div class="table-cell" class="align-center"><input type="checkbox" name="attr_weapon_dropped"/></div>                        
+                        <div class="table-cell"><input class="text-weapon-stat-short" type="number" name="attr_weapon_fumble_max" value="0" /></div>
                         <div class="table-cell">
                             <select class="text-field-critical-short" name="attr_weapon_fumble_severity">
                                 <option value="--" selected="selected">--</option>
@@ -2994,15 +3013,18 @@
         </div>
         <div class="row">
             <div class="col border-box full-width">
-                <h3>Items Carried</h3>
-                
+                <h3>Other Items</h3>
+                <input type="hidden" name="attr_item_total_weight" value="0"/>
+                <input type="hidden" name="attr_item_total_encumbrance" value="0"/>
+
                 <div class="tablelike">
                     <div class="fields-rowlike">
                         <div class="table-cell">
-                            <span class="skill-label" title="Total weight of items and coins">Total Weight:</span><input type="number" class="autocalc-weight" name="attr_equipment_total_weight" value="round(@{item_total_weight} + @{coins_total_weight})" disabled /> lbs
+                            <span class="skill-label" title="Total weight of items">Items Total Weight:</span><input type="number" class="autocalc-weight" name="attr_items_total_display_weight" value="round(@{item_total_weight})" disabled /> lbs
                         </div>
+                        <div><span>&nbsp;&nbsp;&nbsp;</span></div>
                         <div class="table-cell">
-                            <span class="skill-label" title="Total encumbering weight of items and coins">Encumbering Weight:</span><input type="number" class="autocalc-weight" name="attr_equipment_total_encumbrance" value="round(@{item_total_encumbrance} + @{coins_total_weight})" disabled /> lbs
+                            <span class="skill-label" title="Total encumbering weight of items">Items Encumbering Weight:</span><input type="number" class="autocalc-weight" name="attr_items_total_display_encumbrance" value="round(@{item_total_encumbrance})" disabled /> lbs
                         </div>
                     </div>
                 </div>
@@ -3028,6 +3050,10 @@
         <div class="row">
             <div class="col border-box full-width">
                 <h3>Coins</h3>
+
+                <span class="skill-label" title="Total weight of coins">Coins Total Weight:</span>
+                <input type="number" class="autocalc-weight" name="attr_weapons_total_display_weight" value="round(@{coins_total_weight})" disabled /> lbs.
+
                 <div class="fields-rowlike">
                     <div class="table-cell">
                         <label class="label-celllike">Tin: <input type="number" name="attr_coins_tin" value="0" min="0" /></label>
@@ -6248,10 +6274,32 @@ function profBonuses(profession) {
 }
 
 /* ---------------------------------------------------------------------------------------------------
+ * Weapon total weight worker 
+ * --------------------------------------------------------------------------------------------------- */
+on('sheet:opened change:repeating_weapon remove:repeating_weapon', function(){
+    TAS.log("Calculating total weapon weight")
+
+    TAS.repeating('weapon')
+    .attrs('weapon_total_weight')  
+    .fields('weapon_weight', 'weapon_dropped') 
+    .reduce(function(m,r){
+        var w = 0
+        if (r.weapon_dropped != "on") {
+            m.weight+=(r.F.weapon_weight);
+        }
+        return m;
+    },{weight:0},function(m,r,a){
+        a.D[1].weapon_total_weight=m.weight;
+    })
+    .execute(); 
+});
+
+
+/* ---------------------------------------------------------------------------------------------------
  * Equipment total weight worker 
  * --------------------------------------------------------------------------------------------------- */
-on('sheet:opened change:repeating_equipment remove:repeating_equipment', function(){
-    TAS.log("Calculating weight")
+on('sheet:opened change:weapon_total_weight change:repeating_equipment remove:repeating_equipment', function(){
+    TAS.log("Calculating item weight")
 
     TAS.repeating('equipment')
     .attrs('item_total_weight','item_total_encumbrance')  
