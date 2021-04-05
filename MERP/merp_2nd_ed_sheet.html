@@ -1029,7 +1029,6 @@
         </div>
     </div>
 
-
     <div class="tab-content sheet-tab2 sheet-top-padding">
         <h2>Skills</h2>
 
@@ -2796,79 +2795,197 @@
 
                 <div class="tablelike">
                     <div class="table-heading fields-rowlike">
-                        <div class="table-cell">Weapon</div>
-                        <div class="table-cell" title="The max value of a fumble">Fum</div>
-                        <div class="table-cell" title="This is the critical you take on a fumble roll, if applicable.">Fumble<br/>Critical</div>
-                        <div class="table-cell" title="The primary critical that happens for this weapon.">Primary<br/>Critical</div>
-                        <div class="table-cell" title="The secondary critical that happens for this weapon, if applicable.">Secondary<br/>Critical</div>
-                        <div class="table-cell" title="The range of a thrown or missile weapon.">Range</div>
+                        <div class="table-cell" title="The weapon name">Weapon</div>
+                        <div class="table-cell" title="The applied weapons skill.">Weapon Skill</div>
+                        <div class="table-cell" title="The weight of the weapon in pounds">Wt.</div>                        
+                        <div class="table-cell" title="The fumble range.">Fmbl<br/>range</div>
+                        <div class="table-cell" title="The severity of critical obtained when fumbled, if applicable.">Fumble<br/>Critical</div>
+                        <div class="table-cell" title="The type of critical delivered by the weapon. The letter in parentheses indicates maximum critical that can be obtained.">Primary<br/>Critical</div>
+                        <div class="table-cell" title="The type of critical delivered by the weapon, if applicable. The letter in parentheses indicates maximum critical that can be obtained.">Secondary<br/>Critical</div>
+                        <div class="table-cell" title="The base range (BR) in feet for the weapon to be thrown or fired. Short range: Up to BR (No OB mod.). Medium range: up to 2 * BR (-25 OB). Long range: 3 * BR (-50 OB). Max range: 4 * BR (-75 OB).">Base<br/>range</div>
                         <div class="table-cell" title="The rounds it takes to reload the weapon to avoid a OB penalty.">Load<br/>Rnds</div>
-                        <div class="table-cell" title="The OB penalty for not taking the indicated rounds to reload the weapon.">Load<br/>Pen</div>
-                        <div class="table-cell" title="Weight in pounds">Wgt</div>
-                        <div class="table-cell" title="The OB against no armor, soft leather, or rigid leather armor.">N/L</div>
-                        <div class="table-cell" title="The OB agains chain or plate armor.">C/P</div>
-                        <div class="table-cell" title="Any special OB from the craftmanship of the weapon.">Craft</div>
-                        <div class="table-cell" title="Any magical OB for the weapon.">Magic</div>
-                        <div class="table-cell" title="The appropriate skill bonus from the skills tab.">Skill</div>
+                        <div class="table-cell" title="The OB penalty for not taking the indicated rounds to reload the weapon.">Reload<br/>penalty</div>
+                        <div class="table-cell" title="The OB modifier against no armor, soft leather armor, or rigid leather armor.">Mod.<br/>N/L</div>
+                        <div class="table-cell" title="The OB modifier against chain armor or plate armor.">Mod.<br/>C/P</div>
+                        <div class="table-cell" title="Any OB bonus deriving from the weapon, whether magical or non-magical.">Item</div>
+                        <div class="table-cell" title="The appropriate skill bonus from the skills tab.">OB</div>
                         <div class="table-cell"></div>
                     </div>
                     <fieldset class="repeating_weapon">
+                        <div class="table-cell"><input class="text-field-weapon-name" name="attr_weapon_name" type="text" spellcheck="false"/></div>
                         <div class="table-cell">
-                            <select class="text-field-weapon" name="attr_weapon_name">
+                            <select class="text-field-weapon-type" name="attr_weapon_skill">
                                 <option value="" selected="selected">--</option>                                                
-                                <optgroup label="1H Edged">
-                                    <option value="Broad Sword">Broad Sword</option>
-                                    <option value="Dagger">Dagger</option>
-                                    <option value="Handaxe">Handaxe</option>
-                                    <option value="Scimitar">Scimitar</option>
-                                    <option value="Short Sword">Short Sword</option>
+                                <option value="@{skill_1hedged_total_bonus}">1-H Edged</option>
+                                <option value="@{skill_1hconc_total_bonus}">1-H Conc.</option>
+                                <option value="@{skill_2handed_total_bonus}">2-Handed</option>
+                                <option value="@{skill_thrown_total_bonus}">Thrown</option>
+                                <option value="@{skill_missile_total_bonus}">Missile</option>
+                                <option value="@{skill_polearm_total_bonus}">Polearm</option>
+                            </select>
+                        </div>
+                        <div class="table-cell"><input class="text-weapon-stat-small" type="number" name="attr_weapon_weight" value="0" /></div>
+                        <div class="table-cell"><input class="text-weapon-stat" type="number" name="attr_weapon_fumble_max" value="0" /></div>
+                        <div class="table-cell">
+                            <select class="text-field-critical-short" name="attr_weapon_fumble_severity">
+                                <option value="--" selected="selected">--</option>
+                                <option value="A">A</option>
+                                <option value="B">B</option>
+                                <option value="C">C</option>
+                                <option value="D">D</option>
+                                <option value="E">E</option>
+                            </select>
+                        </div>
+                        <div class="table-cell">
+                            <select class="text-field-critical" name="attr_weapon_primary_critical">
+                                <option value="(None)" selected="selected">--</option>                                                
+                                <optgroup label="Crush">
+                                    <option value="Crush">CR</option>
+                                    <option value="Crush(A)">CR(A)</option>
+                                    <option value="Crush(B)">CR(B)</option>
+                                    <option value="Crush(C)">CR(C)</option>
+                                    <option value="Crush(D)">CR(D)</option>
                                 </optgroup>
-                                <optgroup label="1H Concussion">
-                                    <option value="Club">Club</option>
-                                    <option value="Mace">Mace</option>
-                                    <option value="Morning Star">Morning Star</option>
-                                    <option value="Net">Net</option>
-                                    <option value="War Hammer">War Hammer</option>
+                                <optgroup label="Crush">
+                                    <option value="Slash">SL</option>
+                                    <option value="Slash(A)">SL(A)</option>
+                                    <option value="Slash(B)">SL(B)</option>
+                                    <option value="Slash(C)">SL(C)</option>
+                                    <option value="Slash(D)">SL(D)</option>
                                 </optgroup>
-                                <optgroup label="1 Handed Pole Arms">
-                                    <option value="Javelin">Javelin</option>
-                                    <option value="Spear">Spear</option>
+                                <optgroup label="Puncture">
+                                    <option value="Puncture">PU</option>
+                                    <option value="Puncture(A)">PU(A)</option>
+                                    <option value="Puncture(B)">PU(B)</option>
+                                    <option value="Puncture(C)">PU(C)</option>
+                                    <option value="Puncture(D)">PU(D)</option>
                                 </optgroup>
-                                <optgroup label="2 Handed Pole Arms">
-                                    <option value="Mountedlance">Mounted Lance</option>
-                                    <option value="Halbard">Halbard</option>
+                                <optgroup label="Unbalance">
+                                    <option value="Unbalance">UB</option>
+                                    <option value="Unbalance(A)">UB(A)</option>
+                                    <option value="Unbalance(B)">UB(B)</option>
+                                    <option value="Unbalance(C)">UB(C)</option>
+                                    <option value="Unbalance(D)">UB(D)</option>
                                 </optgroup>
-                                <optgroup label="2 Handed Weapons">
-                                    <option value="Battle Axe">Battle Axe</option>
-                                    <option value="Flail">Flail</option>
-                                    <option value="Quarterstaff">Quarterstaff</option>
-                                    <option value="Great Sword">Great Sword</option>
+                                <optgroup label="Grapple">
+                                    <option value="Grapple">GR</option>
+                                    <option value="Grapple(A)">GR(A)</option>
+                                    <option value="Grapple(B)">GR(B)</option>
+                                    <option value="Grapple(C)">GR(C)</option>
+                                    <option value="Grapple(D)">GR(D)</option>
                                 </optgroup>
-                                <optgroup label="Missile">
-                                    <option value="Bola">Bola</option>
-                                    <option value="Composite Bow">Composite Bow</option>
-                                    <option value="Crossbow">Crossbow</option>
-                                    <option value="Long Bow">Long Bow</option>
-                                    <option value="Short Bow">Short Bow</option>
-                                    <option value="Sling">Sling</option>
+                                <optgroup label="Heat">
+                                    <option value="Heat">HT</option>
+                                    <option value="Heat(A)">HT(A)</option>
+                                    <option value="Heat(B)">HT(B)</option>
+                                    <option value="Heat(C)">HT(C)</option>
+                                    <option value="Heat(D)">HT(D)</option>                                                                        
+                                </optgroup>
+                                <optgroup label="Cold">
+                                    <option value="Cold">CLD</option>
+                                    <option value="Cold(A)">CLD(A)</option>
+                                    <option value="Cold(B)">CLD(B)</option>
+                                    <option value="Cold(C)">CLD(C)</option>
+                                    <option value="Cold(D)">CLD(D)</option>
+                                </optgroup>
+                                <optgroup label="Electricity">
+                                    <option value="Electricity">EL</option>
+                                    <option value="Electricity(A)">EL(A)</option>
+                                    <option value="Electricity(B)">EL(B)</option>
+                                    <option value="Electricity(C)">EL(C)</option>
+                                    <option value="Electricity(D)">EL(D)</option>
+                                </optgroup>
+                                <optgroup label="Impact">
+                                    <option value="Impact">IMP</option>
+                                    <option value="Impact(A)">IMP(A)</option>
+                                    <option value="Impact(B)">IMP(B)</option>
+                                    <option value="Impact(C)">IMP(C)</option>
+                                    <option value="Impact(D)">IMP(D)</option>                                    
                                 </optgroup>
                             </select>
                         </div>
-                        <div class="table-cell"><input class="text-weapon-stat" type="number" name="attr_weapon_fumble_max" value="0" /></div>
-                        <div class="table-cell"><input class="text-field-critical" type="text" name="attr_weapon_fumble_critical" spellcheck="false"/></div>
-                        <div class="table-cell"><input class="text-field-critical" type="text" name="attr_weapon_primary_critical" spellcheck="false"/></div>
-                        <div class="table-cell"><input class="text-field-critical" type="text" name="attr_weapon_secondary_critical" spellcheck="false"/></div>
+                        <div class="table-cell">
+                            <select class="text-field-critical" name="attr_weapon_secondary_critical">
+                                <option value="(None)" selected="selected">--</option>                                                
+                                <optgroup label="Crush">
+                                    <option value="Crush">CR</option>
+                                    <option value="Crush(A)">CR(A)</option>
+                                    <option value="Crush(B)">CR(B)</option>
+                                    <option value="Crush(C)">CR(C)</option>
+                                    <option value="Crush(D)">CR(D)</option>
+                                </optgroup>
+                                <optgroup label="Crush">
+                                    <option value="Slash">SL</option>
+                                    <option value="Slash(A)">SL(A)</option>
+                                    <option value="Slash(B)">SL(B)</option>
+                                    <option value="Slash(C)">SL(C)</option>
+                                    <option value="Slash(D)">SL(D)</option>
+                                </optgroup>
+                                <optgroup label="Puncture">
+                                    <option value="Puncture">PU</option>
+                                    <option value="Puncture(A)">PU(A)</option>
+                                    <option value="Puncture(B)">PU(B)</option>
+                                    <option value="Puncture(C)">PU(C)</option>
+                                    <option value="Puncture(D)">PU(D)</option>
+                                </optgroup>
+                                <optgroup label="Unbalance">
+                                    <option value="Unbalance">UB</option>
+                                    <option value="Unbalance(A)">UB(A)</option>
+                                    <option value="Unbalance(B)">UB(B)</option>
+                                    <option value="Unbalance(C)">UB(C)</option>
+                                    <option value="Unbalance(D)">UB(D)</option>
+                                </optgroup>
+                                <optgroup label="Grapple">
+                                    <option value="Grapple">GR</option>
+                                    <option value="Grapple(A)">GR(A)</option>
+                                    <option value="Grapple(B)">GR(B)</option>
+                                    <option value="Grapple(C)">GR(C)</option>
+                                    <option value="Grapple(D)">GR(D)</option>
+                                </optgroup>
+                                <optgroup label="Heat">
+                                    <option value="Heat">HT</option>
+                                    <option value="Heat(A)">HT(A)</option>
+                                    <option value="Heat(B)">HT(B)</option>
+                                    <option value="Heat(C)">HT(C)</option>
+                                    <option value="Heat(D)">HT(D)</option>                                                                        
+                                </optgroup>
+                                <optgroup label="Cold">
+                                    <option value="Cold">CLD</option>
+                                    <option value="Cold(A)">CLD(A)</option>
+                                    <option value="Cold(B)">CLD(B)</option>
+                                    <option value="Cold(C)">CLD(C)</option>
+                                    <option value="Cold(D)">CLD(D)</option>
+                                </optgroup>
+                                <optgroup label="Electricity">
+                                    <option value="Electricity">EL</option>
+                                    <option value="Electricity(A)">EL(A)</option>
+                                    <option value="Electricity(B)">EL(B)</option>
+                                    <option value="Electricity(C)">EL(C)</option>
+                                    <option value="Electricity(D)">EL(D)</option>
+                                </optgroup>
+                                <optgroup label="Impact">
+                                    <option value="Impact">IMP</option>
+                                    <option value="Impact(A)">IMP(A)</option>
+                                    <option value="Impact(B)">IMP(B)</option>
+                                    <option value="Impact(C)">IMP(C)</option>
+                                    <option value="Impact(D)">IMP(D)</option>                                    
+                                </optgroup>
+
+                                </optgroup>
+                            </select>
+                        </div>
                         <div class="table-cell"><input type="number" name="attr_weapon_range" value="0" /></div>
-                        <div class="table-cell"><input class="text-weapon-stat" type="number" name="attr_weapon_reload_rounds" value="0" /></div>
+                        <div class="table-cell"><input class="text-weapon-stat-small" type="number" name="attr_weapon_reload_rounds" value="0" /></div>
                         <div class="table-cell"><input class="text-weapon-stat" type="number" name="attr_weapon_reload_penalty" value="0" /></div>
-                        <div class="table-cell"><input class="text-weapon-stat" type="number" name="attr_weapon_weight" value="0" /></div>
                         <div class="table-cell"><input class="text-weapon-stat" type="number" name="attr_weapon_noleather_bonus" value="0" /></div>
                         <div class="table-cell"><input class="text-weapon-stat" type="number" name="attr_weapon_chainplate_bonus" value="0" /></div>
-                        <div class="table-cell"><input class="text-weapon-stat" type="number" name="attr_weapon_craft_bonus" value="0" /></div>
-                        <div class="table-cell"><input class="text-weapon-stat" type="number" name="attr_weapon_magic_bonus" value="0" /></div>
-                        <div class="table-cell"><input type="number" name="attr_weapon_skill_bonus" value="0" /></div>
+                        <div class="table-cell"><input class="text-weapon-stat" type="number" name="attr_weapon_item_bonus" value="0" /></div>
                         <div class="table-cell">
-                            <button type="roll" name="attr_weapon_roll" title="Weapon Attack Roll" value="@{wtype} &{template:weaponattack} {{type=@{weapon_name}}} {{character=@{character_name}}} {{roll=[[1d100!>95cs>95cf<[[@{weapon_fumble_max}]] + @{weapon_craft_bonus} + @{weapon_magic_bonus} + @{weapon_skill_bonus} + @{total_ob_penalty} - ?{Parry|0}]]}} {{fumble_roll=[[1d100]]}} {{fumble_crit=[[1d100]] @{weapon_fumble_critical}}} {{underflow=[[1d100!>95 * -1]]}} {{primary_critical=[[1d100]] @{weapon_primary_critical}}} {{secondary_critical=[[1d100]] @{weapon_secondary_critical}}} {{reloadpenalty=@{weapon_reload_penalty}}} {{noleather=@{weapon_noleather_bonus}}} {{chainplate=@{weapon_chainplate_bonus}}} {{parry=[[?{Parry|0}]]}} {{ob_penalty=[[@{total_ob_penalty}]]}}">
+                            <input type="hidden" name="attr_weapon_skill_bonus" value="@{weapon_skill}" />    
+                            <input type="number" name="attr_weapon_skill_display_bonus" value="@{weapon_skill_bonus}" disabled/>
+                        </div>
+                        <div class="table-cell">
+                            <button type="roll" name="attr_weapon_roll" title="Weapon Attack Roll" value="@{wtype} &{template:weaponattack} {{type=@{weapon_name}}} {{character=@{character_name}}} {{roll=[[1d100!>95cs>95cf<[[@{weapon_fumble_max}]] + @{weapon_item_bonus} [ITEM] + @{weapon_skill_bonus} [OB SKILL] + @{total_ob_penalty} [OB PENALTY] + ?{Modifier|0} [MODIFIER] - ?{Parry|0} [Parry] ]]}} {{fumble_roll=[[1d100]]}} {{fumble_crit=[[1d100]]}} {{fumble_severity=@{weapon_fumble_severity}}} {{primary_critical=[[1d100]] @{weapon_primary_critical}}} {{secondary_critical=[[1d100]] @{weapon_secondary_critical}}} {{reloadpenalty=@{weapon_reload_penalty}}} {{noleather=@{weapon_noleather_bonus}}} {{chainplate=@{weapon_chainplate_bonus}}} {{subtags=Weapon attack}} {{ob_skill=[[@{weapon_skill_bonus}]]}} {{parry=[[?{Parry|0}]]}} {{modifier=[[?{Modifier|0}]]}} {{ob_penalty=[[@{total_ob_penalty}]]}}">
                             </button>
                         </div>
                     </fieldset>
@@ -5090,7 +5207,7 @@ function raceBonuses(race) {
             bonuses["race_bg_options"] = 3;
             break;    
         case "Hobbit":
-            bonuses["stat_st_race_bonus"] = -10;
+            bonuses["stat_st_race_bonus"] = -20;
             bonuses["stat_ag_race_bonus"] = 15;
             bonuses["stat_co_race_bonus"] = 15;
             bonuses["stat_ig_race_bonus"] = 0;
@@ -5769,7 +5886,7 @@ function raceBonuses(race) {
             bonuses["stat_pr_race_bonus"] = -10;
             bonuses["essence_race_bonus"] = 0;
             bonuses["channeling_race_bonus"] = 0; 
-            bonuses["poison_race_bonus"] = 20;
+            bonuses["pointsson_race_bonus"] = 20;
             bonuses["disease_race_bonus"] = 5;
             bonuses["cold_race_bonus"] = 0;
             bonuses["heat_race_bonus"] = 30;
@@ -6700,19 +6817,6 @@ on("sheet:opened change:creature_quickness", function() {
                        {{fumble_roll}}
                     </td>
                 </tr>                
-                <tr>
-                    <td colspan="2" class="sheet-rolltemplate-modifier-fumble">
-                        <span>The roll may have exploded into negative range.</span>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="sheet-rolltemplate-modifier-label">
-                       <span title="Subtract this from the above roll">Additional Underflow:</span>
-                    </td>
-                    <td>
-                       {{underflow}}
-                    </td>
-                </tr>
             </table>
             {{/rollWasFumble() roll}}
             <table class="sheet-rolltemplate-modifiers">
@@ -6777,37 +6881,11 @@ on("sheet:opened change:creature_quickness", function() {
                     </td>
                 </tr>
             </table>
-            <table class="sheet-rolltemplate-modifiers">
-                <tr>
-                    <td class="sheet-rolltemplate-modifier-label">
-                       No Armor / Leather (Add):
-                    </td>
-                    <td>
-                       {{noleather}}
-                    </td>
-                </tr>                
-                <tr>
-                    <td class="sheet-rolltemplate-modifier-label">
-                       Chain/Plate (Add):
-                    </td>
-                    <td>
-                       {{chainplate}}
-                    </td>
-                </tr>              
-                <tr>
-                    <td class="sheet-rolltemplate-modifier-label">
-                       Reload Penalty (Subtract):
-                    </td>
-                    <td>
-                       {{reloadpenalty}}
-                    </td>
-                </tr>              
-            </table>  
             {{#rollWasFumble() roll}}
             <table class="sheet-rolltemplate-modifiers">
                 <tr>
                     <td colspan="2" class="sheet-rolltemplate-modifier-fumble">
-                       <span>FUMBLE!!!</span>
+                       <span>FUMBLE Result</span>
                     </td>
                 </tr>
                 <tr>
@@ -6820,28 +6898,52 @@ on("sheet:opened change:creature_quickness", function() {
                 </tr>                
                 <tr>
                     <td class="sheet-rolltemplate-modifier-label">
-                       Fumble Critical:
+                       Fumble Critical/Severity:
                     </td>
                     <td>
-                       {{fumble_crit}}
-                    </td>
-                </tr>                
-                <tr>
-                    <td colspan="2" class="sheet-rolltemplate-modifier-fumble">
-                        <span>The roll may have exploded into negative range.</span>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="sheet-rolltemplate-modifier-label">
-                       <span title="Subtract this from the above roll">Additional Underflow:</span>
-                    </td>
-                    <td>
-                       {{underflow}}
+                       {{fumble_crit}} / {{fumble_severity}}
                     </td>
                 </tr>
             </table>
             {{/rollWasFumble() roll}}
+
             <table class="sheet-rolltemplate-modifiers">
+                <tr>
+                    <td colspan="2" class="sheet-rolltemplate-modifier-fumble">
+                       <span>Additional modifiers</span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="sheet-rolltemplate-modifier-label">
+                       vs. No armor or Leather armor:
+                    </td>
+                    <td>
+                       {{noleather}}
+                    </td>
+                </tr>                
+                <tr>
+                    <td class="sheet-rolltemplate-modifier-label">
+                       vs. Chain armor or Plate armor:
+                    </td>
+                    <td>
+                       {{chainplate}}
+                    </td>
+                </tr>              
+                <tr>
+                    <td class="sheet-rolltemplate-modifier-label">
+                       Reload Penalty:
+                    </td>
+                    <td>
+                       {{reloadpenalty}}
+                    </td>
+                </tr>              
+            </table>  
+            <table class="sheet-rolltemplate-modifiers">
+                <tr>
+                    <td colspan="2" class="sheet-rolltemplate-modifier-fumble">
+                       <span>Potential criticals</span>
+                    </td>
+                </tr>
                 <tr>
                     <td class="sheet-rolltemplate-modifier-label">
                        Primary Critical:
@@ -6857,22 +6959,46 @@ on("sheet:opened change:creature_quickness", function() {
                     <td>
                        {{secondary_critical}}
                     </td>
-                </tr>                
+                </tr>
+            </table>
+            <table class="sheet-rolltemplate-modifiers">                
+                <tr>
+                    <td colspan="2" class="sheet-rolltemplate-modifier-fumble">
+                       <span>Included modifiers</span>
+                    </td>
+                </tr>
                 <tr>
                     <td class="sheet-rolltemplate-modifier-label">
-                       Parry (Included):
+                       Skill:
+                    </td>
+                    <td>
+                       {{ob_skill}}
+                    </td>
+                </tr>
+                <tr>
+                    <td class="sheet-rolltemplate-modifier-label">
+                       Parry:
                     </td>
                     <td>
                        {{parry}}
                     </td>
-                </tr>                
+                </tr>
+                <tr>
                     <td class="sheet-rolltemplate-modifier-label">
-                       OB Penalty (Included):
+                       OB Penalty:
                     </td>
                     <td>
                        {{ob_penalty}}
                     </td>
                 </tr>
+                <tr>
+                    <td class="sheet-rolltemplate-modifier-label">
+                       Modifier:
+                    </td>
+                    <td>
+                       {{modifier}}
+                    </td>
+                </tr>                
             </table>
         </div>
     </rolltemplate>

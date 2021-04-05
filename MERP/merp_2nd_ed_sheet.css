@@ -95,14 +95,25 @@ select::-ms-expand {
     width: 150px;
 }
 
-.sheet-main select.sheet-text-field-weapon {
-    width: 150px;
+.sheet-main .sheet-text-field-weapon-name {
+    width: 120px;
 }
 
+.sheet-main select.sheet-text-field-weapon-type {
+    width: 90px;
+}
+
+
 .sheet-main input[type=number].sheet-text-weapon-stat {
+    width: 30px;
+    text-align: right;
+}
+
+.sheet-main input[type=number].sheet-text-weapon-stat-small {
     width: 20px;
     text-align: right;
 }
+
 
 .sheet-main input:disabled.sheet-autocalc-bonus {
     width: 45px;
@@ -316,7 +327,11 @@ select::-ms-expand {
 }
 
 .sheet-main .sheet-text-field-critical {
-    width: 75px;
+    width: 65px;
+}
+
+.sheet-main .sheet-text-field-critical-short {
+    width: 35px;
 }
 
 .sheet-main input:disabled.sheet-text-field-medium {
